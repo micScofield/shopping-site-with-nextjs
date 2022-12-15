@@ -6,13 +6,49 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@mui/icons-material": "5.11.0",
+    "@mui/material": "5.11.0",
+    "@reduxjs/toolkit": "1.9.1",
+    "@stripe/react-stripe-js": "1.16.1",
+    "@stripe/stripe-js": "1.46.0",
+    "firebase": "9.15.0",
+    "next": "12.3.4",
+    "prop-types": "15.8.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-redux": "8.0.5",
+    "redux-persist": "6.0.0",
+    "stripe": "11.3.0"
+  },
+  "devDependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "0.8.0",
+    "babel-core": "6.26.3",
+    "babel-jest": "29.3.1",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react": "6.24.1",
+    "enzyme": "3.11.0",
     "eslint": "8.29.0",
-    "eslint-config-next": "13.0.6",
-    "next": "13.0.6",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "eslint-config-next": "12.3.4",
+    "eslint-config-node": "4.1.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "husky": "8.0.0",
+    "jest": "29.3.1",
+    "lint-staged": "13.1.0",
+    "prettier": "2.8.1"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx}": [
+      "npm run lint",
+      "npm test --watchAll=false --findRelatedTests --bail"
+    ]
   }
 }
