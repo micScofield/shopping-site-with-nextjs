@@ -3,5 +3,5 @@ it('expects true to be true', () => {
 })
 
 it('expects false to be false', () => {
-  expect(false).toEqual(true)
+  expect(false).toEqual(false)
 })
