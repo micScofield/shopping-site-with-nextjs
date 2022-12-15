@@ -245,7 +245,7 @@ const authErrors = {
     'This browser is not supported or 3rd party cookies and data may be disabled.',
   'auth/already-initialized':
     'initializeAuth() has already been called with different options. To avoid this error, call initializeAuth() with the same options as when it was originally called, or call getAuth() to return the already initialized instance.',
-};
+}
 
 const storageErrors = {
   'storage/unknown': 'unknown',
@@ -264,29 +264,31 @@ const storageErrors = {
   'storage/no-default-bucket': 'noDefaultBucket',
   'storage/cannot-slice-blob': 'cannotSliceBlob',
   'storage/server-file-wrong-size': 'serverFileWrongSize',
-};
+}
 
-export const formatAlertMessage = (msg) => {
-  const { code, message, name } = msg;
+const formatAlertMessage = (msg) => {
+  const { code, message, name } = msg
 
-  const defaultMessage = 'Oops, Something Went Wrong! Please try again';
+  const defaultMessage = 'Oops, Something Went Wrong! Please try again'
 
-  if (name !== 'FirebaseError') return defaultMessage;
+  if (name !== 'FirebaseError') return defaultMessage
 
-  let formattedMsg = '';
+  let formattedMsg = ''
 
-  const firebaseErrorType = code.split('/')[0];
+  const firebaseErrorType = code.split('/')[0]
 
   switch (firebaseErrorType) {
     case 'auth':
-      formattedMsg = authErrors[code];
-      break;
+      formattedMsg = authErrors[code]
+      break
     case 'storage':
-      formattedMsg = storageErrors[firebaseErrorType];
-      break;
+      formattedMsg = storageErrors[firebaseErrorType]
+      break
     default:
-      formattedMsg = defaultMessage;
+      formattedMsg = defaultMessage
   }
 
-  return formattedMsg;
-};
+  return formattedMsg
+}
+
+export default formatAlertMessage

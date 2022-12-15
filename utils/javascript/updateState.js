@@ -1,6 +1,6 @@
-export const updateState = (oldState, updatedProperties) => {
-    return {
-        ...oldState,
-        ...updatedProperties
-    }
-}
+const updateState = (oldState, updatedProperties) => ({
+  ...oldState,
+  ...updatedProperties,
+})
+
+export default updateState

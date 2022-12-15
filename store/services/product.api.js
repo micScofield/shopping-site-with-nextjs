@@ -1,5 +1,5 @@
-import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
-import { getCategoriesAndDocuments } from 'common/utils/firebase/firebase.utils';
+import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react'
+import { getCategoriesAndDocuments } from 'utils/firebase/firebase.utils'
 
 export const productApi = createApi({
   reducerPath: 'productApi',
@@ -10,19 +10,20 @@ export const productApi = createApi({
       async queryFn() {
         try {
           console.log(`API request made to fetch products...`)
-          const products = await getCategoriesAndDocuments();
-          return { data: products };
+          const products = await getCategoriesAndDocuments()
+          return { data: products }
         } catch (err) {
-          console.error({ err });
+          console.error({ err })
+          return err
         }
       },
       providesTags: ['Product'],
-      keepUnusedDataFor: 86400 // 1 day
+      keepUnusedDataFor: 86400, // 1 day
     }),
   }),
-});
+})
 
-export const { useGetProductsQuery } = productApi;
+export const { useGetProductsQuery } = productApi
 
 /*
 Note on automated refetching-

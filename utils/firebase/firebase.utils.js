@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app'
 import {
   getAuth,
   signInWithRedirect,
@@ -8,7 +8,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-} from 'firebase/auth';
+} from 'firebase/auth'
 import {
   getFirestore,
   doc,
@@ -18,39 +18,38 @@ import {
   writeBatch,
   query,
   getDocs,
-} from 'firebase/firestore';
+} from 'firebase/firestore'
 
-import { config } from 'common/utils/firebase/config';
+import config from 'utils/firebase/config'
 
-initializeApp(config);
+initializeApp(config)
 
-const googleProvider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider()
 
 googleProvider.setCustomParameters({
   prompt: 'select_account',
-});
+})
 
-export const auth = getAuth();
-export const signInWithGooglePopup = () =>
-  signInWithPopup(auth, googleProvider);
+export const auth = getAuth()
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 export const signInWithGoogleRedirect = () =>
-  signInWithRedirect(auth, googleProvider);
+  signInWithRedirect(auth, googleProvider)
 
-export const db = getFirestore();
+export const db = getFirestore()
 
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation = {}
 ) => {
-  if (!userAuth) return;
+  if (!userAuth) return
 
-  const userDocRef = doc(db, 'users', userAuth.uid);
+  const userDocRef = doc(db, 'users', userAuth.uid)
 
-  const userSnapshot = await getDoc(userDocRef);
+  const userSnapshot = await getDoc(userDocRef)
 
   if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
-    const createdAt = new Date();
+    const { displayName, email } = userAuth
+    const createdAt = new Date()
 
     try {
       await setDoc(userDocRef, {
@@ -58,30 +57,32 @@ export const createUserDocumentFromAuth = async (
         email,
         createdAt,
         ...additionalInformation,
-      });
+      })
     } catch (err) {
-      console.log('error creating the user', err?.message);
+      console.log('error creating the user', err?.message)
     }
   }
 
-  return userDocRef;
-};
+  // return userDocRef
+}
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
-  if (!email || !password) return;
+  if (!email || !password) return
 
-  return await createUserWithEmailAndPassword(auth, email, password);
-};
+  // return createUserWithEmailAndPassword(auth, email, password)
+  createUserWithEmailAndPassword(auth, email, password)
+}
 
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
-  if (!email || !password) return;
+  if (!email || !password) return
 
-  return await signInWithEmailAndPassword(auth, email, password);
-};
+  // return signInWithEmailAndPassword(auth, email, password)
+  signInWithEmailAndPassword(auth, email, password)
+}
 
 export const signOutUser = async () => {
-  await signOut(auth);
-};
+  await signOut(auth)
+}
 
 // Ran once to store local data to the firestore DB
 export const addCollectionAndDocuments = async (
@@ -89,36 +90,35 @@ export const addCollectionAndDocuments = async (
   objectsToAdd,
   field
 ) => {
-  const collectionRef = collection(db, collectionKey);
-  const batch = writeBatch(db);
+  const collectionRef = collection(db, collectionKey)
+  const batch = writeBatch(db)
 
   objectsToAdd.forEach((object) => {
-    const docRef = doc(collectionRef, object.title.toLowerCase());
-    batch.set(docRef, object);
-  });
+    const docRef = doc(collectionRef, object.title.toLowerCase())
+    batch.set(docRef, object)
+  })
 
-  await batch.commit();
-  console.log('done');
-};
+  await batch.commit()
+  console.log('done')
+}
 
 export const getCategoriesAndDocuments = async () => {
-  const collectionRef = collection(db, 'categories');
-  const q = query(collectionRef);
+  const collectionRef = collection(db, 'categories')
+  const q = query(collectionRef)
 
-  const querySnapshot = await getDocs(q);
+  const querySnapshot = await getDocs(q)
   const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
+    const { title, items } = docSnapshot.data()
+    acc[title.toLowerCase()] = items
+    return acc
+  }, {})
 
-  return categoryMap;
-};
+  return categoryMap
+}
 
 // Observable pattern provided by firebase to check if auth state has changed or not and this listener used in the root of the app (App.js) which sets or removes the user info from redux store and thus auth state is determined
-export const onAuthStateChangedListener = (callback) => {
-  return onAuthStateChanged(auth, callback);
-};
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback)
 
 // An alternative to above pattern is to use below promise based syntax (Nothing wrong with above one though)
 /*

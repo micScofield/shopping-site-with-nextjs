@@ -1,3 +1,50 @@
 {
-  "extends": ["next", "prettier"]
+  "extends": ["airbnb", "prettier", "plugin:react/jsx-runtime"],
+  "plugins": ["prettier"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["."]
+      }
+    }
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": "latest"
+  },
+  "env": {
+    "browser": true
+  },
+  "ecmaFeatures": {
+    "modules": true,
+    "spread": true,
+    "restParams": true
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    // "no-console": 1, // throw warning messages
+    "no-console": "off",
+    "func-names": "off",
+    "no-process-exit": "off",
+    "object-shorthand": "off",
+    "class-methods-use-this": "off",
+    "import/no-extraneous-dependencies": "off",
+    "react/prop-types": "off",
+    // "react/prop-types": 1, // throw warning messages
+    "react/jsx-props-no-spreading": "off",
+    "no-param-reassign": "off",
+    "import/prefer-default-export": "off",
+    "react/function-component-definition": "off"
+  },
+  "globals": {
+    "it": true,
+    "expect": true,
+    "fetch": true,
+    "document": true,
+    "serviceWorker": true,
+    "navigator": true,
+    "window": true
+  }
 }
