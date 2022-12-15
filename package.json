@@ -6,11 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --fix",
+    "lint": "eslint .",
+    "format": "prettier",
     "prepare": "husky install",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test": "jest"
   },
   "dependencies": {
     "@mui/icons-material": "5.11.0",
@@ -53,6 +52,7 @@
   "lint-staged": {
     "**/*.{js,jsx}": [
       "npm run lint",
+      "npm run format --write",
       "npm run test --watchAll=false --findRelatedTests --bail"
     ]
   }

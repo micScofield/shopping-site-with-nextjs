@@ -15,11 +15,11 @@
   "env": {
     "browser": true
   },
-  "ecmaFeatures": {
-    "modules": true,
-    "spread": true,
-    "restParams": true
-  },
+  // "ecmaFeatures": {
+  //   "modules": true,
+  //   "spread": true,
+  //   "restParams": true
+  // },
   "rules": {
     "prettier/prettier": "error",
     "no-unused-vars": "off",
