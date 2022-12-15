@@ -48,7 +48,7 @@
   "lint-staged": {
     "**/*.{js,jsx}": [
       "npm run lint",
-      "npm test --watchAll=false --findRelatedTests --bail"
+      "npm run test --watchAll=false --findRelatedTests --bail"
     ]
   }
 }
