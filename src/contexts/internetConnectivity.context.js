@@ -7,10 +7,6 @@ export const InternetConnectionStatusContext = createContext({
 export const InternetConnectionStatusProvider = ({ children }) => {
   const [isOnline, setOnline] = useState(true)
 
-  if (typeof navigator === 'undefined') {
-    return null
-  }
-
   useEffect(() => {
     setOnline(navigator.onLine)
 
@@ -31,7 +27,7 @@ export const InternetConnectionStatusProvider = ({ children }) => {
         setOnline(false)
       })
     }
-  }, [navigator.onLine])
+  }, [])
 
   const value = useMemo(() => ({ isOnline }))
 

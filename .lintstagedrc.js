@@ -12,6 +12,6 @@
 module.exports = {
   '*.{js,jsx}': [
     'npm run lint',
-    'npm run test --watchAll=false --findRelatedTests --bail',
+    // 'npm run test --watchAll=false --findRelatedTests --bail',
   ],
 }
