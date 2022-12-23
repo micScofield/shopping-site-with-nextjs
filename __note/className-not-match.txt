@@ -1,0 +1,31 @@
+** react-material-ui-warning-prop-classname-did-not-match **
+
+This is an issue with nextjs v12 moving to Rust compiler and not having support for emotion library. Rust makes compilation faster than babel. And it helps in transformation and minification for your JS code for production
+
+To override this, a workaround is to still use babel compiler by adding a .babelrc file to the root of your project.
+
+Required plugin -  npm i -D --save-exact @emotion/babel-plugin
+
+File configuration - 
+    {
+    "presets": [
+        [
+        "next/babel",
+        {
+            "preset-react": {
+            "runtime": "automatic",
+            "importSource": "@emotion/react"
+            }
+        }
+        ]
+    ],
+    "plugins": ["@emotion/babel-plugin"]
+    }
+
+If you still want to use rust for compilation but have some babel configuration, there is an experimental feature by nextjs (https://nextjs.org/docs/messages/swc-disabled)
+
+Use this code inside next.config.js - 
+    experimental: {
+        forceSwcTransforms: true,
+    },
+

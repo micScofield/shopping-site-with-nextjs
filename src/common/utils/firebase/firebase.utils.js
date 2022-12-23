@@ -9,6 +9,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth'
+
 import {
   getFirestore,
   doc,
@@ -19,8 +20,13 @@ import {
   query,
   getDocs,
 } from 'firebase/firestore'
-
+import dynamic from 'next/dynamic'
 import config from 'src/common/utils/firebase/config'
+
+// const GoogleAuthProvider = dynamic(
+//   () => import('firebase/auth').then((module) => module.GoogleAuthProvider),
+//   { ssr: false }
+// )
 
 initializeApp(config)
 
@@ -105,11 +111,12 @@ export const addCollectionAndDocuments = async (
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, 'categories')
   const q = query(collectionRef)
+  // const q = query(collectionRef, limit(3)) // to limit number of documents being fetched from the collection
 
   const querySnapshot = await getDocs(q)
   const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
     const { title, items } = docSnapshot.data()
-    acc[title.toLowerCase()] = items
+    acc[title.toLowerCase()] = items.slice(0, 4) // return only 4 items per category for shop page
     return acc
   }, {})
 
@@ -121,17 +128,27 @@ export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback)
 
 // An alternative to above pattern is to use below promise based syntax (Nothing wrong with above one though)
-/*
-export const getCurrentUser = () => {
-  return new Promise((resolve, reject) => {
+// /*
+export const getCurrentUser = () =>
+  new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(
       auth,
       (userAuth) => {
-        unsubscribe(); // close listener ie. once we receive userAuth info, clean up the memory
-        resolve(userAuth);
+        unsubscribe() // close listener ie. once we receive userAuth info, clean up the memory
+        resolve(userAuth)
       },
       reject // third argument is for errors
-    );
-  });
-};
-*/
+    )
+  })
+// */
+
+export async function getDocument(collectionName, documentName) {
+  const docRef = doc(db, `${collectionName}`, `${documentName}`)
+  const docSnap = await getDoc(docRef)
+
+  if (docSnap.exists()) {
+    return docSnap.data()
+  }
+  console.log('No such document!')
+  return null
+}

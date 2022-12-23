@@ -1,4 +1,35 @@
 /** @type {import('next').NextConfig} */
+const withPlugins = require('next-compose-plugins')
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
+// Note - Below commented code needs to be used when analyzing bundle. It causes some warnings in the terminal which can be ignored
+
+// add more plugins as required as a new array below
+// const nextConfig = withPlugins([[withBundleAnalyzer]], {
+//   reactStrictMode: true,
+//   images: {
+//     remotePatterns: [
+//       {
+//         protocol: 'https',
+//         hostname: 'i.ibb.co',
+//         // port: '',
+//         pathname: '/**/**',
+//       },
+//     ],
+//   },
+//   webpack(config) {
+//     config.module.rules.push({
+//       test: /\.svg$/,
+//       use: [{ loader: '@svgr/webpack', options: { icon: true } }],
+//     })
+
+//     return config
+//   },
+// })
+
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -6,11 +37,22 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'i.ibb.co',
-        port: '',
+        // port: '',
         pathname: '/**/**',
       },
     ],
   },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [{ loader: '@svgr/webpack', options: { icon: true } }],
+    })
+
+    return config
+  },
+  // experimental: {
+  //   forceSwcTransforms: true,
+  // },
 }
 
 module.exports = nextConfig

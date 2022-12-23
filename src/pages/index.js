@@ -1,23 +1,20 @@
-import CardContainer from 'src/common/components/card-container/CardContainer'
 import { useRouter } from 'next/router'
 
 import fs from 'fs/promises'
 import path from 'path'
-import DarkSpinner from 'src/common/components/spinner/dark/DarkSpinner'
-import Link from 'next/link'
+// import CardContainer from 'src/common/components/card-container/CardContainer'
+import dynamic from 'next/dynamic'
+
+const CardContainer = dynamic(
+  () => import('src/common/components/card-container/CardContainer'),
+  { loading: () => <div>Loading...</div> }
+)
 
 const Home = ({ categories }) => {
-  if (!categories)
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    )
-
   const router = useRouter()
 
   if (!categories) {
-    return <DarkSpinner />
+    // We are anyways redirecting the user to /no-data (see static method below). We won't reach this block unless we have dynamic routes with fallbacks
   }
 
   const onOverlayClickHandler = (e, payload) => {
@@ -36,13 +33,13 @@ const Home = ({ categories }) => {
   })
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      <Link href="/shop/1">404 Page</Link>
+    <>
+      <div className="mt-8" />
+
       {categoriesArray && categoriesArray.length !== 0 && (
         <CardContainer cards={categoriesArray} />
       )}
-    </div>
+    </>
   )
 }
 

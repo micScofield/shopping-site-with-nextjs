@@ -52,7 +52,7 @@ const Card = ({ cardData, large }) => {
       <stop stop-color="#F4F4F4" offset="70%" />
     </linearGradient>
   </defs>
-  <rect width="${w}" height="${h}" fill="#333" />
+  <rect width="${w}" height="${h}" fill="#D3D3D3" />
   <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
   <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
 </svg>`

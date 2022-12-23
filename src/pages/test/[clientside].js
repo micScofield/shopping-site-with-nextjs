@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import DarkSpinner from 'src/common/components/spinner/dark/DarkSpinner'
 import { useGetProductsQuery } from 'src/store/services/product.api'
 
 function Test() {

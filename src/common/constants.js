@@ -25,3 +25,8 @@ export const ALERT_TYPES = {
 
 export const NO_INTERNET_MESSAGE =
   'Bad connection detected. You may not be able to use all features'
+
+export const ICONS = {
+  LOGO: 'LOGO',
+  SHOPPING_BAG: 'SHOPPING_BAG',
+}

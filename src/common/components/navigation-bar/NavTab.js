@@ -16,13 +16,13 @@ function NavTab({ navTab, children }) {
 
   if (text === 'Sign Out')
     return (
-      <Link className={classes.navLink} onClick={onClick}>
+      <Link className={classes.navLink} onClick={onClick} prefetch={false}>
         {text}
       </Link>
     )
 
   return (
-    <Link className={classes.navLink} href={`${route}`}>
+    <Link className={classes.navLink} href={`${route}`} prefetch={false}>
       {text}
     </Link>
   )

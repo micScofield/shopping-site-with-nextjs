@@ -8,19 +8,23 @@
     "start": "next start",
     "lint": "eslint .",
     "prepare": "husky install",
-    "test": "jest"
+    "test": "jest",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "@emotion/react": "11.10.5",
-    "@emotion/styled": "11.10.5",
     "@mui/icons-material": "5.11.0",
     "@mui/lab": "5.0.0-alpha.112",
     "@mui/material": "5.11.0",
+    "@mui/styles": "5.11.1",
     "@reduxjs/toolkit": "1.9.1",
     "@stripe/react-stripe-js": "1.16.1",
     "@stripe/stripe-js": "1.46.0",
     "firebase": "9.15.0",
     "next": "12.3.4",
+    "next-compose-plugins": "2.2.1",
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -31,6 +35,10 @@
     "uuid": "9.0.0"
   },
   "devDependencies": {
+    "@emotion/babel-plugin": "11.10.5",
+    "@emotion/server": "11.10.0",
+    "@next/bundle-analyzer": "13.1.0",
+    "@svgr/webpack": "6.5.1",
     "@wojtekmaj/enzyme-adapter-react-17": "0.8.0",
     "autoprefixer": "10.4.13",
     "babel-core": "6.26.3",
@@ -38,6 +46,7 @@
     "babel-jest": "29.3.1",
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
+    "cross-env": "7.0.3",
     "enzyme": "3.11.0",
     "eslint": "8.29.0",
     "eslint-config-airbnb": "19.0.4",
@@ -54,6 +63,7 @@
     "lint-staged": "13.1.0",
     "postcss": "8.4.20",
     "prettier": "2.8.1",
+    "prettier-plugin-tailwindcss": "0.2.1",
     "tailwindcss": "3.2.4"
   }
 }
