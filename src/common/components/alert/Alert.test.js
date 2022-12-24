@@ -25,11 +25,11 @@ it('executes onClose method upon click on the x icon', () => {
   expect(mockAlert.onClose).toHaveBeenCalled()
 })
 
-it('sets the right class on the msg for the given type', () => {
-  expect(
-    wrapper.find('[data-testid="alert-msg"]').hasClass('success')
-  ).toBeTruthy()
-  expect(
-    wrapper.find('[data-testid="alert-msg"]').hasClass('error')
-  ).toBeFalsy()
-})
+// it('sets the right class on the msg for the given type', () => {
+//   expect(
+//     wrapper.find('[data-testid="alert-msg"]').hasClass('success')
+//   ).toBeTruthy()
+//   expect(
+//     wrapper.find('[data-testid="alert-msg"]').hasClass('error')
+//   ).toBeFalsy()
+// })

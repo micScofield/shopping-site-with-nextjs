@@ -101,6 +101,7 @@ const Card = ({ cardData, large }) => {
           tabIndex={0}
         >
           {overlay[0] && (
+            // eslint-disable-next-line react/no-danger
             <h2 dangerouslySetInnerHTML={{ __html: overlay[0] }} />
           )}
           {overlay[1] && <p>{overlay[1]}</p>}

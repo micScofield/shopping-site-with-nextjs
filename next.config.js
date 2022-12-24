@@ -42,6 +42,7 @@ const nextConfig = {
       },
     ],
   },
+  // Treat SVG file imports as React Components
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -50,9 +51,12 @@ const nextConfig = {
 
     return config
   },
-  // experimental: {
-  //   forceSwcTransforms: true,
-  // },
+  // See note for more info on below commented block
+  /*
+  experimental: {
+    forceSwcTransforms: true,
+  },
+  */
 }
 
 module.exports = nextConfig
