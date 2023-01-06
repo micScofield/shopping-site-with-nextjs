@@ -1,16 +1,21 @@
+import { Container, Box } from '@mui/material'
 import React from 'react'
-// can be dynamically imported
-import DarkSpinner from 'src/common/components/spinner/dark/DarkSpinner'
-import { useGetProductsQuery } from 'src/store/services/product.api'
 
-function Test() {
-  const { data, isLoading, isError, error } = useGetProductsQuery()
-
-  if (isLoading && !data) {
-    return <DarkSpinner />
-  }
-
-  return !isLoading ? data && <div>{JSON.stringify(data)}</div> : null
+function index() {
+  return (
+    <Container>
+      <Box sx={{ my: 2 }}>
+        {[...new Array(12)]
+          .map(
+            () => `Cras mattis consectetur purus sit amet fermentum.
+Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
+          )
+          .join('\n')}
+      </Box>
+    </Container>
+  )
 }
 
-export default Test
+export default index

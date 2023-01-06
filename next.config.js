@@ -57,6 +57,9 @@ const nextConfig = {
     forceSwcTransforms: true,
   },
   */
+  compiler: {
+    // removeConsole: true,
+  },
 }
 
 module.exports = nextConfig

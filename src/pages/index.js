@@ -4,6 +4,7 @@ import fs from 'fs/promises'
 import path from 'path'
 // import CardContainer from 'src/common/components/card-container/CardContainer'
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
 
 const CardContainer = dynamic(
   () => import('src/common/components/card-container/CardContainer'),
@@ -34,6 +35,26 @@ const Home = ({ categories }) => {
 
   return (
     <>
+      <Head>
+        <title key="title">
+          Home
+          {/* Some detail about the page less than 60 chars */}
+        </title>
+        <meta
+          name="description"
+          key="description"
+          content="Description of home page in about 160 chars, should contain keywords, express value/specs, call to action (for ex. visit today, signup right away)"
+        />
+        <meta
+          key="og:title"
+          property="og:title"
+          content="Bringing West Coast Technology to the Midwest | Home"
+        />
+        {/* Route goes to content ex. facebook.com/about */}
+        <meta property="og:url" key="og:url" content="domain.com" />
+        {/* Tells search engines, which is the correct version of the page. So it will index that page only. For ex. https://google.com, http://google.com. https://www.google.com etc */}
+        <link rel="canonical" key="canonical" href="https://www.domain.com" />
+      </Head>
       <div className="mt-8" />
 
       {categoriesArray && categoriesArray.length !== 0 && (

@@ -47,6 +47,7 @@
     "no-plusplus": "off",
     "react/button-has-type": "off",
     "react/forbid-prop-types": "off",
+    "react/no-array-index-key": "off",
     "jsx-a11y/click-events-have-key-events": "off", // Maybe turned on in future as coding for the keyboard is important for users with physical disabilities who cannot use a mouse, AT compatibility, and screenreader users.
     "react/require-default-props": "off", // Enable this for actual development
     "jsx-a11y/no-noninteractive-element-interactions": "off", // Enable this if you want focus on tab keypress

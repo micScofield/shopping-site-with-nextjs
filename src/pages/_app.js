@@ -15,6 +15,7 @@ import createEmotionCache from 'src/styles/createEmotionCache'
 import { ThemeProvider } from '@mui/material'
 import 'src/styles/globals.css'
 import { setCurrentUser } from 'src/store/slices/user.slice'
+import Fonts from 'scripts/seo/fonts'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -51,7 +52,26 @@ function MyApp({
         // dispatch an action setting auth status to false
         setCurrentUser(null)
       })
-  })
+  }, [])
+
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side')
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles)
+    }
+
+    // Load google fonts post render (making fonts non-blocking for faster page loads)
+    Fonts()
+  }, [])
+
+  // Remove console calls in production
+  if (process.env.NODE_ENV !== 'development') {
+    console.log = () => {}
+    console.debug = () => {}
+    console.info = () => {}
+    console.warn = () => {}
+  }
 
   return (
     <Provider store={store}>
@@ -62,10 +82,17 @@ function MyApp({
             <CacheProvider value={emotionCache}>
               <Head>
                 <title>Shop Up</title>
-                <meta name="description" content="Shop Up" />
                 <meta
+                  name="description"
+                  content="Generic description on _app.js. 160 chars, should contain keywords, express value/specs, call to action (for ex. visit today, signup right away)"
+                />
+                {/* <meta
                   name="viewport"
                   content="initial-scale=1.0, width=device-width"
+                /> */}
+                <meta
+                  name="viewport"
+                  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
                 />
               </Head>
               <ThemeProvider theme={theme}>
@@ -73,6 +100,7 @@ function MyApp({
                 <Layout>
                   {/* Stripe can be removed from here and can be included in the component where it is required only ie. checkout component <Elements> <<CheckoutJSX>> </Elements>  */}
                   <Elements stripe={stripePromise}>
+                    Test
                     <Component {...pageProps} />
                   </Elements>
                 </Layout>{' '}
