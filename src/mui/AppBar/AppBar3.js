@@ -516,6 +516,7 @@ export default function Header(props) {
               onClick={() => setValue(0)}
               className={classes.logoContainer}
               style={{ textDecoration: 'none' }}
+              aria-label="Logo"
             >
               <svg
                 className={classes.logo}
