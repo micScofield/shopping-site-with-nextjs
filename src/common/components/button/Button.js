@@ -18,6 +18,8 @@ function Button(props) {
     isLoading,
   } = props
 
+  const abc = 1
+
   // determining button classes
   const buttonCssClasses = [classes.button]
   if (isLoading) buttonCssClasses.push(classes.buttonLoading)

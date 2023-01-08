@@ -12,6 +12,7 @@ function CardContainer({
   onTitleClick,
   titlePosition,
 }) {
+  console.log(cards)
   // determine class for container
   const cardContainerClassName = grid
     ? classes.cardContainerGrid

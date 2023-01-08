@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://domain.com</loc>
-    <lastmod>2023-01-06</lastmod>
+    <lastmod>2023-01-07</lastmod>
   </url>,<url>
     <loc>https://domain.com/no-data</loc>
     <lastmod>2022-12-19</lastmod>
@@ -20,7 +20,7 @@
     <lastmod>2022-12-23</lastmod>
   </url>,<url>
     <loc>https://domain.com/test</loc>
-    <lastmod>2022-12-24</lastmod>
+    <lastmod>2023-01-07</lastmod>
   </url>,<url>
     <loc>https://domain.com/test2/[categoryId]</loc>
     <lastmod>2022-12-20</lastmod>
