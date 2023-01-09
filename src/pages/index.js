@@ -70,6 +70,8 @@ export const getStaticProps = async () => {
   )
   const result = JSON.parse(response)
 
+  console.log('Server side log')
+
   // Redirection can also be done from here only in case of no data
   if (!result) {
     return {

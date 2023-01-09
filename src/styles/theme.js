@@ -1,14 +1,34 @@
 import { createTheme } from '@mui/material/styles'
 
 const theme = createTheme({
+  components: {
+    MuiTabs: {
+      styleOverrides: {
+        indicator: {
+          backgroundColor: 'orange',
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            // color: 'red',
+          },
+          '&.Mui-selected': {
+            opacity: 1,
+            // backgroundColor: 'lightpink',
+            '&:hover': {
+              // backgroundColor: 'orange',
+              // color: 'pink',
+            },
+          },
+        },
+      },
+    },
+  },
   typography: {
     fontFamily: `"Roboto", sans-serif`,
-    tab: {
-      textTransform: 'none',
-      fontWeight: 700,
-      fontSize: '1rem',
-      color: 'white',
-    },
     estimate: {
       fontSize: '1rem',
       textTransform: 'none',

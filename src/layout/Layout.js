@@ -1,9 +1,6 @@
-import AppBar from 'src/mui/AppBar/AppBar'
-import AppBar2 from 'src/mui/AppBar/AppBar2'
-import BackToTop from 'src/layout/back-to-top/BackToTop'
 import { useState } from 'react'
-import { routes } from 'src/mui/AppBar/routes'
-import Header from 'src/mui/AppBar/AppBar3'
+import AppBar from 'src/common/mui/AppBar'
+import BackToTop from 'src/layout/back-to-top/BackToTop'
 // import TestAppBar from './TestAppBar'
 
 function Layout({ children }) {
@@ -30,13 +27,15 @@ function Layout({ children }) {
         routes={routes}
       /> */}
 
-      <Header
+      {/* <Header
         setValue={setValue}
         setSelectedIndex={setSelectedIndex}
         value={value}
         selectedIndex={selectedIndex}
         routes={routes}
-      />
+      /> */}
+
+      <AppBar />
 
       {/* <div style={{ marginTop: '4rem' }} />
       <TestAppBar /> */}

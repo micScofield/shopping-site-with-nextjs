@@ -1,8 +1,7 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 
-import Card from 'src/common/components/card/Card'
 import classes from 'src/common/components/card-container/card-container.module.scss'
+import Card from 'src/common/components/card/Card'
 
 function CardContainer({
   title,
@@ -12,7 +11,6 @@ function CardContainer({
   onTitleClick,
   titlePosition,
 }) {
-  console.log(cards)
   // determine class for container
   const cardContainerClassName = grid
     ? classes.cardContainerGrid

@@ -1,5 +1,4 @@
 import { ALERT_TYPES } from 'src/common/constants'
-import React from 'react'
 
 import classes from 'src/common/components/alert/alert.module.scss'
 

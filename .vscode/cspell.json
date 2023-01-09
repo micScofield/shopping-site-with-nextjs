@@ -1,0 +1,33 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "mkdirp",
+    "tsmerge",
+    "githubusercontent",
+    "vsmarketplacebadge",
+    "visualstudio",
+    "colour",
+    "commitlint",
+    "devs",
+    "nextauth",
+    "nextjs",
+    "npmrc",
+    "preload",
+    "prettierignore",
+    "prettierrc",
+    "regexes",
+    "rgba",
+    "scaleable",
+    "signin",
+    "tailwindcss",
+    "typeof",
+    "typesafe",
+    "unoptimized",
+    "userinfo",
+    "Vercel",
+    "Viewports",
+    "WEBP"
+  ],
+  "flagWords": [""]
+}
