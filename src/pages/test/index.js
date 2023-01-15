@@ -1,46 +1,39 @@
-import { Container, Box } from '@mui/material'
-import React from 'react'
-import { LazyLoadComponent } from 'react-lazy-load-image-component'
-import Card from 'src/common/components/card/Card'
+import { Box, Container, Grid } from '@mui/material'
+import Link from 'src/common/Link'
 
 function index() {
-  const test = {
-    id: 5,
-    title: 'mens',
-    imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
-    subText: 'Shop Now',
-    urlRedirect: '/mens',
-    overlay: ['mens', 'Shop Now'],
-    overlayPosition: 'middle',
-    showOverlayByDefault: true,
-  }
-  const test2 = {
-    id: 4,
-    title: 'womens',
-    imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
-    subText: 'Shop Now',
-    urlRedirect: '/womens',
-    overlay: ['womens', 'Shop Now'],
-    overlayPosition: 'middle',
-    showOverlayByDefault: true,
-  }
   return (
-    <Container>
+    <Container maxWidth={false}>
       <Box sx={{ my: 2 }}>
-        {[...new Array(12)]
+        {[...new Array(24)]
           .map(
-            () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
+            () =>
+              `Tim Berners-Lee, a British scientist, invented the World Wide Web (WWW) in 1989, while working at CERN. The web was originally conceived and developed to meet the demand for automated information-sharing between scientists in universities and institutes around the world.`
           )
           .join('\n')}
       </Box>
-
-      <LazyLoadComponent threshold={600}>
-        <Card cardData={test} />
-      </LazyLoadComponent>
-      <Card cardData={test2} />
+      <footer>
+        <Grid container justify="center">
+          <Grid item>
+            <Grid
+              container
+              direction="column"
+              spacing={2}
+              style={{ margin: 0 }}
+            >
+              <Grid
+                item
+                component={Link}
+                onClick={() => console.log('Clicked')}
+                href="/test/i18n"
+                // className={classes.link}
+              >
+                i18n
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </footer>
     </Container>
   )
 }

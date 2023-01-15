@@ -4,6 +4,7 @@ const withPlugins = require('next-compose-plugins')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
+const { i18n } = require('./next-i18next.config')
 
 // Note - Below commented code needs to be used when analyzing bundle. It causes some warnings in the terminal which can be ignored. Command: ANALYZE=true npm run build
 
@@ -70,6 +71,7 @@ const nextConfig = {
   compiler: {
     // removeConsole: true,
   },
+  i18n,
 }
 
 module.exports = nextConfig

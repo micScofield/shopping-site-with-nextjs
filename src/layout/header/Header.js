@@ -1,9 +1,12 @@
 import { useTheme } from '@emotion/react'
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
 import MenuIcon from '@mui/icons-material/Menu'
 import {
   AppBar,
+  Box,
   Button,
   ClickAwayListener,
+  Grid,
   Grow,
   Hidden,
   IconButton,
@@ -26,9 +29,11 @@ import makeStyles from '@mui/styles/makeStyles'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import LanguageIcon from '@mui/icons-material/Language'
 // import en from 'public/locales/en'
 // import fr from 'public/locales/fr'
 import React, { useEffect, useState } from 'react'
+import CustomizedMenus from 'src/mui/AppBar/Menu'
 
 function ElevationScroll(props) {
   const { children } = props
@@ -45,11 +50,11 @@ function ElevationScroll(props) {
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
-    zIndex: theme.zIndex.modal + 1,
-    position: 'sticky',
+    // zIndex: theme.zIndex.modal + 1,
+    zIndex: 100,
   },
   toolbar: {
-    border: '1px solid gray',
+    // border: '1px solid gray',
     backgroundColor: 'white',
     color: theme.palette.primary.main,
     position: 'relative',
@@ -138,9 +143,52 @@ const useStyles = makeStyles((theme) => ({
   },
   localePicker: {
     fontSize: '1rem',
-    border: 'none',
     padding: '0.25rem',
+    border: 'none',
     cursor: 'pointer',
+    '&:focus': {
+      outline: 'none',
+    },
+  },
+  latestMenuButton: {
+    position: 'relative',
+    border: '1px solid orange',
+  },
+  latestMenu: {
+    background: '#F8F8F8',
+    // border: '1px solid orange',
+    width: '100%',
+    position: 'absolute',
+    top: '4rem',
+    zIndex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  latestMenuColumn: {
+    padding: '0 5rem',
+    marginTop: '2rem',
+    marginBottom: '2rem',
+  },
+  latestMenuItem: {
+    fontSize: '0.8rem',
+    padding: '0.15rem',
+    cursor: 'pointer',
+    '&:hover': {
+      color: 'orange',
+    },
+  },
+  latestMenuDynamicColumn: {
+    display: 'flex',
+  },
+  backdrop: {
+    position: 'fixed',
+    cursor: 'pointer',
+    width: '100%',
+    height: '100%',
+    left: 0,
+    top: 100,
+    zIndex: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
 }))
 
@@ -217,6 +265,22 @@ export default function Header(props) {
       name: '404',
       link: '/notfoundpage',
     },
+    {
+      name: 'Womens',
+      link: '/shop/hats',
+    },
+    {
+      name: 'Mens',
+      link: '/shop/jackets',
+    },
+    {
+      name: 'Test',
+      link: '/test',
+    },
+    {
+      name: '404',
+      link: '/notfoundpage',
+    },
   ]
 
   const path = typeof window !== 'undefined' && window.location.pathname
@@ -251,7 +315,6 @@ export default function Header(props) {
       //   ariaPopup: anchorEl ? 'true' : undefined,
       mouseOver: (event) => handleClick(event),
     },
-    { name: 'Sign In', link: '/signin', value: 2 },
   ]
 
   function handleListKeyDown(event) {
@@ -260,6 +323,9 @@ export default function Header(props) {
       setOpenMenu(false)
     }
   }
+
+  // Latest Menu Implementation 14Jan
+  const [showLatestMenu, setShowLatestMenu] = useState(false)
 
   const tabs = (
     <>
@@ -290,6 +356,7 @@ export default function Header(props) {
           />
         ))}
       </Tabs>
+      {/* Two Popper Examples to follow - 1. Small popper (Dropdown with less space beneath hovered item, 2. Page Wide Menu) */}
       <Popper
         open={openMenu}
         anchorEl={anchorEl}
@@ -392,6 +459,59 @@ export default function Header(props) {
               </div>
             </div>
             <Hidden smDown>{tabs}</Hidden>
+            <Hidden smUp>{drawer}</Hidden>
+            {/* <CustomizedMenus option={menuOptions2} /> */}
+            <Button
+              aria-label="Menu Dropdown"
+              variant="text"
+              disableRipple
+              className={classes.latestMenuButton}
+              endIcon={<KeyboardArrowDown />}
+              onMouseOver={() => setShowLatestMenu(true)}
+              onClick={() => setShowLatestMenu(!showLatestMenu)}
+            >
+              Menu
+            </Button>
+            {showLatestMenu && (
+              <>
+                <div className={classes.latestMenu}>
+                  <div
+                    className={classes.latestMenuColumn}
+                    style={{ borderRight: '1px solid orange' }}
+                  >
+                    {menuOptions2.map((option) => (
+                      <div className={classes.latestMenuItem}>
+                        {option.name}
+                      </div>
+                    ))}
+                    <div style={{ display: 'none' }}>Test</div>
+                  </div>
+                  <div className={classes.latestMenuDynamicColumn}>
+                    <div className={classes.latestMenuColumn}>
+                      {menuOptions2.map((option) => (
+                        <div className={classes.latestMenuItem}>
+                          {option.name}
+                        </div>
+                      ))}
+                    </div>
+                    <div className={classes.latestMenuColumn}>
+                      <Image
+                        src="https://i.ibb.co/GCCdy8t/womens.png"
+                        height="250"
+                        width="200"
+                        alt="Shop Women"
+                        style={{ cursor: 'pointer' }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  className={classes.backdrop}
+                  onClick={() => setShowLatestMenu(false)}
+                />
+              </>
+            )}
             <Hidden smDown>
               <Button
                 onClick={() => router.push('/cart')}
@@ -406,8 +526,6 @@ export default function Header(props) {
                 />
               </Button>
             </Hidden>
-            <Hidden smUp>{drawer}</Hidden>
-            {/* <CustomizedMenus option={menuOptions2} /> */}
             <select
               onChange={changeLanguage}
               defaultValue={locale}
@@ -420,7 +538,7 @@ export default function Header(props) {
         </AppBar>
       </ElevationScroll>
       {/* Push content down */}
-      {/* <div className={classes.toolbarMargin} /> */}
+      <div className={classes.toolbarMargin} />
     </>
   )
 }

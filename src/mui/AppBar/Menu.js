@@ -1,56 +1,46 @@
-import React, { useState } from 'react'
-import Toolbar from '@mui/material/Toolbar'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
-import MuiAppBar from '@mui/material/AppBar'
-import useScrollTrigger from '@mui/material/useScrollTrigger'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import makeStyles from '@mui/styles/makeStyles'
-import { styled, alpha } from '@mui/material/styles'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import EditIcon from '@mui/icons-material/Edit'
-import Divider from '@mui/material/Divider'
-import ArchiveIcon from '@mui/icons-material/Archive'
-import FileCopyIcon from '@mui/icons-material/FileCopy'
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import {
-  ClickAwayListener,
-  Grow,
-  MenuList,
-  Paper,
-  Popper,
-  Tab,
-  Tabs,
-} from '@mui/material'
-import Link from 'next/link'
+import { Grid } from '@mui/material'
+import Button from '@mui/material/Button'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import { alpha, styled } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import Link from 'src/common/Link'
 
 const useStyles = makeStyles((theme) => ({
   options: {
-    border: '1px solid gray',
+    border: '0.25px solid gray',
     margin: '1rem',
+  },
+  menuGrid: {
+    border: '1px solid red',
   },
 }))
 
 function CustomizedMenus({ option }) {
   const classes = useStyles()
   const router = useRouter()
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const open = Boolean(anchorEl)
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [open, setOpen] = useState(false)
   const handleClick = (event) => {
     console.log('mouse enter')
     setAnchorEl(event.currentTarget)
+    setOpen(!open)
   }
-  const handleClose = (e, link) => {
-    e.preventDefault()
+  const handleClose = (link) => {
     console.log('mouse leave')
     if (link) {
       router.push(link, null, { scroll: false })
     }
     setAnchorEl(null)
+    setOpen(false)
+  }
+
+  const handleMenuItemMouseOver = (e) => {
+    console.log(e, e.target)
   }
 
   return (
@@ -65,24 +55,27 @@ function CustomizedMenus({ option }) {
         disableRipple
         className={classes.options}
         onClick={handleClick}
-        onMouseOver={handleClick}
         endIcon={open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
       >
-        {option.name}
+        Menu
       </Button>
       <StyledMenu
         id="customized-menu"
         MenuListProps={{
           'aria-labelledby': 'customized-button',
-          onMouseLeave: handleClose,
+          // onMouseLeave: handleClose,
         }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
       >
-        {option.menuOptions.map((menuItem) => (
+        {option.map((menuItem, i) => (
           <MenuItem
-            onClick={(e) => handleClose(e, menuItem.link)}
+            key={i}
+            component={Link}
+            href={menuItem.link}
+            onClick={() => handleClose(menuItem.link)}
+            onMouseOver={(e) => handleMenuItemMouseOver(e)}
             disableRipple
           >
             {menuItem.name}
@@ -97,22 +90,22 @@ export default CustomizedMenus
 
 const StyledMenu = styled((props) => (
   <Menu
-    elevation={0}
-    anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'left',
-    }}
-    transformOrigin={{
-      vertical: 'top',
-      horizontal: 'left',
-    }}
+    // elevation={1}
+    // anchorOrigin={{
+    //   vertical: 'bottom',
+    //   horizontal: 'left',
+    // }}
+    // transformOrigin={{
+    //   vertical: 'top',
+    //   horizontal: 'left',
+    // }}
     {...props}
   />
 ))(({ theme }) => ({
   '& .MuiPaper-root': {
-    borderRadius: 6,
+    borderRadius: 0,
     marginTop: theme.spacing(1),
-    minWidth: 180,
+    minWidth: '100%',
     color:
       theme.palette.mode === 'light'
         ? 'rgb(55, 65, 81)'

@@ -16,16 +16,22 @@
     <loc>https://domain.com/signin</loc>
     <lastmod>2023-01-05</lastmod>
   </url>,<url>
-    <loc>https://domain.com/test/[clientside]</loc>
+    <loc>https://domain.com/test/[clientSideDataFetching]</loc>
     <lastmod>2022-12-23</lastmod>
   </url>,<url>
+    <loc>https://domain.com/test/i18n</loc>
+    <lastmod>2023-01-12</lastmod>
+  </url>,<url>
     <loc>https://domain.com/test</loc>
-    <lastmod>2023-01-07</lastmod>
+    <lastmod>2023-01-15</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/lazy-loading</loc>
+    <lastmod>2023-01-12</lastmod>
   </url>,<url>
     <loc>https://domain.com/test2/[categoryId]</loc>
     <lastmod>2022-12-20</lastmod>
   </url>,<url>
     <loc>https://domain.com/test2</loc>
-    <lastmod>2023-01-05</lastmod>
+    <lastmod>2023-01-11</lastmod>
   </url>
 </urlset>

@@ -1,14 +1,17 @@
-import React from 'react'
-import Document, { Html, Head, Main, NextScript } from 'next/document'
-import createEmotionServer from '@emotion/server/create-instance'
-import createEmotionCache from 'src/styles/createEmotionCache'
-import theme from 'src/styles/theme'
 import { ServerStyleSheets } from '@mui/styles'
+import Document, { Head, Html, Main, NextScript } from 'next/document'
+import React from 'react'
+import theme from 'src/styles/theme'
+import i18nextConfig from 'next-i18next.config'
 
 export default class MyDocument extends Document {
   render() {
+    const currentLocale =
+      // eslint-disable-next-line no-underscore-dangle
+      this.props.__NEXT_DATA__.locale ?? i18nextConfig.i18n.defaultLocale
+
     return (
-      <Html lang="en">
+      <Html lang={currentLocale}>
         <Head>
           <meta charSet="utf-8" />
           <meta name="theme-color" content={theme.palette.primary.main} />

@@ -1,21 +1,22 @@
-import { store, persistor } from 'src/store/index'
-import { Provider } from 'react-redux'
-import Head from 'next/head'
-import { PersistGate } from 'redux-persist/integration/react'
-import { Elements } from '@stripe/react-stripe-js'
-import { stripePromise } from 'src/common/utils/stripe/stripe.utils'
-import Layout from 'src/layout/Layout'
-import { getCurrentUser } from 'src/common/utils/firebase/firebase.utils'
-import { useEffect } from 'react'
-import { InternetConnectionStatusProvider } from 'src/contexts/internetConnectivity.context'
-import CssBaseline from '@mui/material/CssBaseline'
 import { CacheProvider } from '@emotion/react'
-import theme from 'src/styles/theme'
-import createEmotionCache from 'src/styles/createEmotionCache'
 import { ThemeProvider } from '@mui/material'
-import 'src/styles/globals.css'
-import { setCurrentUser } from 'src/store/slices/user.slice'
+import CssBaseline from '@mui/material/CssBaseline'
+import { Elements } from '@stripe/react-stripe-js'
+import { appWithTranslation } from 'next-i18next'
+import Head from 'next/head'
+import { useEffect } from 'react'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
 import Fonts from 'scripts/seo/fonts'
+import { getCurrentUser } from 'src/common/utils/firebase/firebase.utils'
+import { stripePromise } from 'src/common/utils/stripe/stripe.utils'
+import { InternetConnectionStatusProvider } from 'src/contexts/internetConnectivity.context'
+import Layout from 'src/layout/Layout'
+import { persistor, store } from 'src/store/index'
+import { setCurrentUser } from 'src/store/slices/user.slice'
+import createEmotionCache from 'src/styles/createEmotionCache'
+import 'src/styles/globals.css'
+import theme from 'src/styles/theme'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -99,7 +100,7 @@ function MyApp({
                   <Elements stripe={stripePromise}>
                     <Component {...pageProps} />
                   </Elements>
-                </Layout>{' '}
+                </Layout>
               </ThemeProvider>
             </CacheProvider>
           </InternetConnectionStatusProvider>
@@ -109,7 +110,7 @@ function MyApp({
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)
 
 /*
 Make sure Head component is present on all pages if you want to customise title and description. Else, this will be the generic one for all the pages
