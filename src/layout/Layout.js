@@ -1,15 +1,11 @@
-import { useState } from 'react'
 import AppBar from 'src/common/mui/AppBar'
 import BackToTop from 'src/layout/back-to-top/BackToTop'
 import Header from 'src/layout/header/Header'
 import HeaderMenuOnly from './header/HeaderMenuOnly'
-import HeaderVanilla from './header/HeaderVanilla'
-// import TestAppBar from './TestAppBar'
+import HeaderVanila from './header/HeaderVanila'
 
 function Layout({ children }) {
-  // Taking following states outside incase we need value and selectedIndex in some other component for ex. footer
-  const [value, setValue] = useState(0)
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  // Take states outside incase we need value and selectedIndex in some other component for ex. footer
 
   return (
     <div>
@@ -40,15 +36,11 @@ function Layout({ children }) {
 
       {/* <AppBar /> */}
 
-      {/* <TestAppBar /> */}
-
       <Header />
-
-      {/* <div style={{ marginTop: '5rem' }} /> */}
 
       {/* <HeaderMenuOnly /> */}
 
-      <HeaderVanilla />
+      <HeaderVanila />
 
       {/* ID: back-to-top-anchor is for the ^ icon placed on the bottom of the screen. See BackToTop component  */}
       <div id="back-to-top-anchor" />

@@ -160,9 +160,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     position: 'absolute',
     top: '4rem',
-    zIndex: 1,
     display: 'flex',
     justifyContent: 'center',
+    zIndex: 1,
   },
   latestMenuColumn: {
     padding: '0 5rem',
@@ -358,7 +358,8 @@ export default function Header(props) {
       </Tabs>
       {/* Two Popper Examples to follow - 1. Small popper (Dropdown with less space beneath hovered item, 2. Page Wide Menu) */}
       <Popper
-        open={openMenu}
+        // open={openMenu}
+        open={false}
         anchorEl={anchorEl}
         placement="bottom-start"
         role={undefined}
@@ -467,7 +468,7 @@ export default function Header(props) {
               disableRipple
               className={classes.latestMenuButton}
               endIcon={<KeyboardArrowDown />}
-              onMouseOver={() => setShowLatestMenu(true)}
+              // onMouseOver={() => setShowLatestMenu(true)}
               onClick={() => setShowLatestMenu(!showLatestMenu)}
             >
               Menu

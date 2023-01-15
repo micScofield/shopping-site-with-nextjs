@@ -1,35 +1,14 @@
 import { useTheme } from '@emotion/react'
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
 import MenuIcon from '@mui/icons-material/Menu'
-import {
-  AppBar,
-  Box,
-  Button,
-  ClickAwayListener,
-  Grid,
-  Grow,
-  Hidden,
-  IconButton,
-  List,
-  ListItem,
-  ListItemText,
-  MenuItem,
-  MenuList,
-  Paper,
-  Popper,
-  SwipeableDrawer,
-  Tab,
-  Tabs,
-  useMediaQuery,
-} from '@mui/material'
+import { AppBar, Hidden, IconButton, SwipeableDrawer } from '@mui/material'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 import makeStyles from '@mui/styles/makeStyles'
 import Image from 'next/image'
 import Link from 'src/common/Link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import { KeyboardArrowRight } from '@mui/icons-material'
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -40,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbarMargin: {
     ...theme.mixins.toolbar,
-    // marginBottom: '0.25rem',
   },
   tabContainer: {
     // border: '0.1px solid red',
@@ -49,13 +27,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   tabWrapper: {
-    // border: '0.1px solid green',
+    boxSizing: 'border-box',
     padding: '1rem 1.5rem',
     '&:hover': {
+      borderBottom: '2px solid orange',
       '& $menu': {
         visibility: 'visible',
       },
-      '&  $backdrop': {
+      '&  ~$backdrop': {
         display: 'block',
       },
     },
@@ -63,7 +42,8 @@ const useStyles = makeStyles((theme) => ({
   tab: {
     padding: '1rem 0.25rem',
     '&:hover': {
-      color: 'orange',
+      // color: 'orange',
+      // borderBottom: '2px solid orange',
     },
   },
   menu: {
@@ -72,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '220px',
     width: '100%',
     position: 'absolute',
-    top: '3.75rem',
+    top: '3.85rem',
     left: 0,
     display: 'flex',
     justifyContent: 'flex-start',
@@ -94,13 +74,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   menuItem: {
-    textAlign: 'left',
-    padding: '0.15rem 5rem',
+    padding: '0.25rem 3rem',
     cursor: 'pointer',
     fontSize: '0.8rem',
     '&:hover': {
       color: 'orange',
     },
+    display: 'flex',
+    justifyContent: 'flex-start',
   },
   subMenu: {
     visibility: 'hidden',
@@ -129,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
   subMenuItem: {
     fontSize: '0.8rem',
     cursor: 'pointer',
-    padding: '0.15rem 0rem',
+    padding: '0.25rem 0rem',
     '&:hover': {
       color: 'orange',
     },
@@ -159,9 +140,15 @@ function ElevationScroll(props) {
   })
 }
 
-export default function HeaderVanilla(props) {
+export default function HeaderVanila(props) {
   const classes = useStyles(props)
   const router = useRouter()
+
+  const [openDrawer, setOpenDrawer] = useState(false)
+
+  const iOS =
+    typeof window !== 'undefined' &&
+    /iPad|iPhone|iPod/.test(navigator.userAgent)
 
   const routes = [
     {
@@ -176,19 +163,15 @@ export default function HeaderVanilla(props) {
       menu: [
         {
           name: 'Mens',
-          link: '/shop/jackets',
+          link: '/shop/men',
           subMenu: [
             {
-              name: 'Sub Menu Item',
-              link: '/test',
+              name: 'i18n',
+              link: '/test/i18n',
             },
             {
-              name: 'Item2',
-              link: '/test',
-            },
-            {
-              name: 'Item3',
-              link: '/test',
+              name: 'Lazy Loading',
+              link: '/test/lazy-loading',
             },
           ],
         },
@@ -209,35 +192,35 @@ export default function HeaderVanilla(props) {
       menu: [
         {
           name: 'Womens',
-          link: '/shop/hats',
+          link: '/shop/womens',
           subMenu: [
             {
-              name: 'Sub Menu Item',
+              name: 'Test',
               link: '/test',
             },
             {
-              name: 'Item2',
-              link: '/test',
+              name: 'i18n',
+              link: '/test/i18n',
             },
             {
-              name: 'Item3',
-              link: '/test',
+              name: 'Lazy Loading',
+              link: '/test/lazy-loading',
             },
             {
-              name: 'Sub Menu Item',
+              name: 'Test',
               link: '/test',
             },
           ],
           subMenuImages: [
             {
-              src: 'https://i.ibb.co/GCCdy8t/womens.png',
-              alt: 'Shop Women',
+              src: 'https://i.ibb.co/px2tCc3/jackets.png',
+              alt: 'Shop Jackets',
             },
           ],
         },
         {
           name: 'Mens',
-          link: '/shop/jackets',
+          link: '/shop/men',
         },
         {
           name: 'Test',
@@ -248,15 +231,15 @@ export default function HeaderVanilla(props) {
           link: '/notfoundpage',
         },
         {
-          name: 'A very long menu item name to test containerr width',
-          link: '/shop/hats',
+          name: 'A long menu item \n name to test width',
+          link: '/test',
         },
         {
-          name: 'Mens',
-          link: '/shop/jackets',
+          name: 'Hats',
+          link: '/shop/hats',
           subMenu: [
             {
-              name: 'Sub Menu Item',
+              name: 'Sub Menu Item 1',
               link: '/test',
             },
             {
@@ -266,8 +249,8 @@ export default function HeaderVanilla(props) {
           ],
           subMenuImages: [
             {
-              src: 'https://i.ibb.co/R70vBrQ/men.png',
-              alt: 'Shop Men',
+              src: 'https://i.ibb.co/cvpntL1/hats.png',
+              alt: 'Shop Hats',
             },
             {
               src: 'https://i.ibb.co/0jqHpnp/sneakers.png',
@@ -287,6 +270,24 @@ export default function HeaderVanilla(props) {
     },
   ]
 
+  const drawer = (
+    <>
+      <SwipeableDrawer
+        disableBackdropTransition={!iOS}
+        disableDiscovery={iOS}
+        open={openDrawer}
+        onClose={() => setOpenDrawer(false)}
+        onOpen={() => setOpenDrawer(true)}
+        classes={{ paper: classes.drawer }}
+      >
+        <div className={classes.toolbarMargin} />
+      </SwipeableDrawer>
+      <IconButton onClick={() => setOpenDrawer(!openDrawer)} disableRipple>
+        <MenuIcon className={classes.hamburgerIcon} />
+      </IconButton>
+    </>
+  )
+
   return (
     <>
       <ElevationScroll {...props}>
@@ -295,20 +296,20 @@ export default function HeaderVanilla(props) {
             <Hidden smDown>
               <div className={classes.tabContainer}>
                 {routes.map((route, i) => (
-                  <div className={classes.tabWrapper} key={i}>
-                    <Link
-                      key={i}
-                      className={classes.tab}
-                      href={route.link}
-                      sx={{
-                        borderBottom:
-                          router.pathname === route.link && '2px solid orange',
-                      }}
-                    >
-                      {route.name}
-                    </Link>
-                    {route.menu && (
-                      <>
+                  <>
+                    <div className={classes.tabWrapper} key={i}>
+                      <Link
+                        key={i}
+                        className={classes.tab}
+                        href={route.link}
+                        // sx={{
+                        //   borderBottom:
+                        //     router.pathname === route.link && '2px solid orange',
+                        // }}
+                      >
+                        {route.name}
+                      </Link>
+                      {route.menu && (
                         <div className={classes.menu}>
                           <div
                             className={classes.menuColumn}
@@ -319,10 +320,13 @@ export default function HeaderVanilla(props) {
                                 key={index}
                                 className={classes.menuItemWrapper}
                               >
-                                <span className={classes.menuItem}>
+                                <div
+                                  className={classes.menuItem}
+                                  onClick={() => router.push(option.link)}
+                                >
                                   {option.name}
-                                  {option.subMenu && <span> &gt;</span>}
-                                </span>
+                                  {option.subMenu && <KeyboardArrowRight />}
+                                </div>
                                 {option.subMenu && (
                                   <div className={classes.subMenu}>
                                     <div className={classes.subMenuColumn}>
@@ -331,6 +335,9 @@ export default function HeaderVanilla(props) {
                                           <div
                                             className={classes.subMenuItem}
                                             key={index2}
+                                            onClick={() =>
+                                              router.push(subMenuItem.link)
+                                            }
                                           >
                                             {subMenuItem.name}
                                           </div>
@@ -358,13 +365,14 @@ export default function HeaderVanilla(props) {
                             ))}
                           </div>
                         </div>
-                        {/* <div className={classes.backdrop} /> */}
-                      </>
-                    )}
-                  </div>
+                      )}
+                    </div>
+                    <div className={classes.backdrop} />
+                  </>
                 ))}
               </div>
             </Hidden>
+            <Hidden smUp>{drawer}</Hidden>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
