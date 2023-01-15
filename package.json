@@ -27,8 +27,6 @@
     "@mui/material": "5.11.0",
     "@mui/styles": "5.11.1",
     "@reduxjs/toolkit": "1.9.1",
-    "@stripe/react-stripe-js": "1.16.1",
-    "@stripe/stripe-js": "1.46.0",
     "clsx": "1.2.1",
     "firebase": "9.15.0",
     "fontfaceobserver": "2.3.0",
@@ -45,7 +43,6 @@
     "react-redux": "8.0.5",
     "redux-persist": "6.0.0",
     "sass": "1.56.2",
-    "stripe": "11.3.0",
     "uuid": "9.0.0"
   },
   "devDependencies": {

@@ -1,7 +1,6 @@
 import { CacheProvider } from '@emotion/react'
 import { ThemeProvider } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
-import { Elements } from '@stripe/react-stripe-js'
 import { appWithTranslation } from 'next-i18next'
 import Head from 'next/head'
 import { useEffect } from 'react'
@@ -9,7 +8,6 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import Fonts from 'scripts/seo/fonts'
 import { getCurrentUser } from 'src/common/utils/firebase/firebase.utils'
-import { stripePromise } from 'src/common/utils/stripe/stripe.utils'
 import { InternetConnectionStatusProvider } from 'src/contexts/internetConnectivity.context'
 import Layout from 'src/layout/Layout'
 import { persistor, store } from 'src/store/index'
@@ -96,10 +94,7 @@ function MyApp({
               <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <Layout>
-                  {/* Stripe can be removed from here and can be included in the component where it is required only ie. checkout component <Elements> <<CheckoutJSX>> </Elements>  */}
-                  <Elements stripe={stripePromise}>
-                    <Component {...pageProps} />
-                  </Elements>
+                  <Component {...pageProps} />
                 </Layout>
               </ThemeProvider>
             </CacheProvider>
