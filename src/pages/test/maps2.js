@@ -4,8 +4,6 @@ import TrainIcon from '@mui/icons-material/Train'
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk'
 import PedalBikeIcon from '@mui/icons-material/PedalBike'
 import { useEffect, useRef } from 'react'
-import { useRouter } from 'next/router'
-import Link from 'src/common/Link'
 
 const lat = 27.798297
 const lng = -102.467171
@@ -39,7 +37,7 @@ const Maps = () => {
     })
   })
 
-  const handleCarIconClick = (directionFlag) => {
+  const handleDirectionClick = (directionFlag) => {
     // router.push({
     //   pathname: 'https://maps.google.com/',
     //   query: {
@@ -74,10 +72,10 @@ const Maps = () => {
           justifyContent: 'space-around',
         }}
       >
-        <DriveEtaIcon onClick={() => handleCarIconClick('d')} />
-        <TrainIcon onClick={() => handleCarIconClick('r')} />
-        <DirectionsWalkIcon onClick={() => handleCarIconClick('w')} />
-        <PedalBikeIcon onClick={() => handleCarIconClick('b')} />
+        <DriveEtaIcon onClick={() => handleDirectionClick('d')} />
+        <TrainIcon onClick={() => handleDirectionClick('r')} />
+        <DirectionsWalkIcon onClick={() => handleDirectionClick('w')} />
+        <PedalBikeIcon onClick={() => handleDirectionClick('b')} />
       </div>
     </div>
   )

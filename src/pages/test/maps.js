@@ -100,11 +100,15 @@ const Maps = () => {
           })
 
           // Add a click listener for each marker, and set up the info window.
-          markerRef.addListener('click', () => {
-            infoWindow.close()
-            infoWindow.setContent(markerRef.getTitle())
-            infoWindow.open(markerRef.getMap(), markerRef)
-          })
+          markerRef.addListener(
+            'click',
+            () => {
+              infoWindow.close()
+              infoWindow.setContent(markerRef.getTitle())
+              infoWindow.open(markerRef.getMap(), markerRef)
+            },
+            { passive: true }
+          )
         }
       }
 
