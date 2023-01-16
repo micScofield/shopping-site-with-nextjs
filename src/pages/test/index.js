@@ -2,6 +2,7 @@ import { Box, Container, Grid } from '@mui/material'
 import Link from 'src/common/Link'
 
 function index() {
+  console.log(process.env.NEXT_PUBLIC_TEST_KEY)
   return (
     <Container maxWidth={false}>
       <Box sx={{ my: 2 }}>
@@ -33,6 +34,7 @@ function index() {
             </Grid>
           </Grid>
         </Grid>
+        {/* {process.env.TEST_KEY} */}
       </footer>
     </Container>
   )
