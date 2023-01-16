@@ -456,6 +456,7 @@ export default function Header(props) {
                   // height="2rem"
                   // width="2rem"
                   layout="fill"
+                  priority
                 />
               </div>
             </div>

@@ -126,6 +126,31 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
+  hamburgerIcon: {
+    position: 'relative',
+    marginLeft: '0.5rem',
+    height: '2.5rem',
+    width: '2.5rem',
+    cursor: 'pointer',
+  },
+  drawer: {
+    width: '40%',
+  },
+  drawerTabContainer: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+  drawerTabWrapper: {
+    padding: '1rem 1.5rem',
+  },
+  drawerTab: {
+    padding: '1rem 0.25rem',
+    '&:hover': {
+      color: 'orange',
+    },
+  },
 }))
 
 function ElevationScroll(props) {
@@ -280,7 +305,15 @@ export default function HeaderVanila(props) {
         onOpen={() => setOpenDrawer(true)}
         classes={{ paper: classes.drawer }}
       >
-        <div className={classes.toolbarMargin} />
+        <div className={classes.drawerTabContainer}>
+          {routes.map((route, i) => (
+            <div className={classes.drawerTabWrapper} key={i}>
+              <Link key={i} className={classes.drawerTab} href={route.link}>
+                {route.name}
+              </Link>
+            </div>
+          ))}
+        </div>
       </SwipeableDrawer>
       <IconButton onClick={() => setOpenDrawer(!openDrawer)} disableRipple>
         <MenuIcon className={classes.hamburgerIcon} />
@@ -296,8 +329,8 @@ export default function HeaderVanila(props) {
             <Hidden smDown>
               <div className={classes.tabContainer}>
                 {routes.map((route, i) => (
-                  <>
-                    <div className={classes.tabWrapper} key={i}>
+                  <div key={i}>
+                    <div className={classes.tabWrapper}>
                       <Link
                         key={i}
                         className={classes.tab}
@@ -368,7 +401,7 @@ export default function HeaderVanila(props) {
                       )}
                     </div>
                     <div className={classes.backdrop} />
-                  </>
+                  </div>
                 ))}
               </div>
             </Hidden>

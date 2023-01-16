@@ -55,7 +55,6 @@ const Home = ({ categories }) => {
         {/* Tells search engines, which is the correct version of the page. So it will index that page only. For ex. https://google.com, http://google.com. https://www.google.com etc */}
         <link rel="canonical" key="canonical" href="https://www.domain.com" />
       </Head>
-      <div className="mt-8" />
 
       {categoriesArray && categoriesArray.length !== 0 && (
         <CardContainer cards={categoriesArray} />
