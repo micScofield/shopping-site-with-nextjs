@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://domain.com</loc>
-    <lastmod>2023-01-09</lastmod>
+    <lastmod>2023-01-16</lastmod>
   </url>,<url>
     <loc>https://domain.com/no-data</loc>
     <lastmod>2022-12-19</lastmod>
@@ -27,6 +27,12 @@
   </url>,<url>
     <loc>https://domain.com/test/lazy-loading</loc>
     <lastmod>2023-01-12</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/maps</loc>
+    <lastmod>2023-01-17</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/maps2</loc>
+    <lastmod>2023-01-17</lastmod>
   </url>,<url>
     <loc>https://domain.com/test2/[categoryId]</loc>
     <lastmod>2022-12-20</lastmod>

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     backgroundColor: 'white',
     color: theme.palette.primary.main,
-    zIndex: 1000,
+    zIndex: 100,
     position: 'relative',
   },
   toolbarMargin: {
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-start',
     overflow: 'scroll',
-    zIndex: 900,
+    zIndex: 100,
   },
   menuColumn: {
     width: '33%',
@@ -103,9 +103,12 @@ const useStyles = makeStyles((theme) => ({
   },
   subMenuImageColumn: {
     position: 'relative',
-    textAlign: 'center',
-    height: '100%',
+    // height: '100%',
     flexGrow: 2,
+    width: '100%',
+    height: 'auto',
+    aspectRatio: 'attr(width) / attr(height)',
+    overflow: 'hidden',
   },
   subMenuItem: {
     fontSize: '0.8rem',
@@ -240,6 +243,8 @@ export default function HeaderVanila(props) {
             {
               src: 'https://i.ibb.co/px2tCc3/jackets.png',
               alt: 'Shop Jackets',
+              height: '320',
+              width: '480',
             },
           ],
         },
@@ -275,11 +280,15 @@ export default function HeaderVanila(props) {
           subMenuImages: [
             {
               src: 'https://i.ibb.co/cvpntL1/hats.png',
+              height: '271',
+              width: '400',
               alt: 'Shop Hats',
             },
             {
               src: 'https://i.ibb.co/0jqHpnp/sneakers.png',
               alt: 'Shop Sneakers',
+              height: '320',
+              width: '480',
             },
           ],
         },
@@ -385,9 +394,13 @@ export default function HeaderVanila(props) {
                                         >
                                           <Image
                                             src={subMenuImage.src}
-                                            layout="fill"
+                                            // layout="fill"
+                                            height={subMenuImage.height}
+                                            width={subMenuImage.width}
                                             alt={subMenuImage.alt}
-                                            style={{ cursor: 'pointer' }}
+                                            style={{
+                                              cursor: 'pointer',
+                                            }}
                                           />
                                         </div>
                                       )
@@ -400,7 +413,7 @@ export default function HeaderVanila(props) {
                         </div>
                       )}
                     </div>
-                    <div className={classes.backdrop} />
+                    {route.menu && <div className={classes.backdrop} />}
                   </div>
                 ))}
               </div>

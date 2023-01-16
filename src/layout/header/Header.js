@@ -162,7 +162,7 @@ const useStyles = makeStyles((theme) => ({
     top: '4rem',
     display: 'flex',
     justifyContent: 'center',
-    zIndex: 1,
+    zIndex: 100,
   },
   latestMenuColumn: {
     padding: '0 5rem',
