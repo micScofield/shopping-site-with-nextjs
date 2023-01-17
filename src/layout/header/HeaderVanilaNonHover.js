@@ -24,7 +24,7 @@ import Link from 'src/common/Link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
-import { Search } from '@mui/icons-material'
+import { ArrowBack, Search } from '@mui/icons-material'
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 100,
     position: 'relative',
     padding: '0 1rem',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'flex-start',
+    },
   },
   logo: {},
   tabContainer: {
@@ -132,6 +135,32 @@ const useStyles = makeStyles((theme) => ({
   menuCardColumn: {
     flex: 1,
   },
+  hamburgerIcon: {
+    cursor: 'pointer',
+    height: '2.5rem',
+    width: '2.5rem',
+    display: 'flex',
+    marginRight: 'auto',
+  },
+  drawer: {
+    width: '80%',
+    padding: '2rem',
+  },
+  // drawerTabContainer: {
+  //   display: 'flex',
+  //   justifyContent: 'flex-start',
+  //   alignItems: 'center',
+  //   flexDirection: 'column',
+  // },
+  // drawerTabWrapper: {
+  //   padding: '1rem 1.5rem',
+  // },
+  // drawerTab: {
+  //   padding: '1rem 0.25rem',
+  //   '&:hover': {
+  //     color: 'orange',
+  //   },
+  // },
 }))
 
 function ElevationScroll(props) {
@@ -154,6 +183,8 @@ export default function HeaderVanilaNonHover(props) {
   const [anchorEl, setAnchorEl] = useState(null)
   const [menuItems, setMenuItems] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
+  const [openDrawer, setOpenDrawer] = useState(false)
+  const [openNestedDrawer, setOpenNestedDrawer] = useState(false)
 
   const routes = [
     {
@@ -299,8 +330,48 @@ export default function HeaderVanilaNonHover(props) {
       setAnchorEl(null)
       setMenuItems(null)
     }
-    // setAnchorEl(e)
   }
+
+  const iOS =
+    typeof window !== 'undefined' &&
+    /iPad|iPhone|iPod/.test(navigator.userAgent)
+
+  const drawer = (
+    <>
+      <SwipeableDrawer
+        disableBackdropTransition={!iOS}
+        disableDiscovery={iOS}
+        open={openDrawer}
+        onClose={() => setOpenDrawer(false)}
+        onOpen={() => setOpenDrawer(true)}
+        classes={{ paper: classes.drawer }}
+      >
+        <div>
+          <ArrowBack onClick={() => setOpenDrawer(false)} />
+        </div>
+        <span onClick={() => setOpenNestedDrawer(true)}>Test</span>
+        <SwipeableDrawer
+          disableBackdropTransition={!iOS}
+          disableDiscovery={iOS}
+          open={openNestedDrawer}
+          onClose={() => {
+            setOpenNestedDrawer(false)
+            setOpenDrawer(false)
+          }}
+          onOpen={() => setOpenNestedDrawer(true)}
+          classes={{ paper: classes.drawer }}
+        >
+          <div>
+            <ArrowBack onClick={() => setOpenNestedDrawer(false)} />
+          </div>
+          Nested
+        </SwipeableDrawer>
+      </SwipeableDrawer>
+      <IconButton onClick={() => setOpenDrawer(!openDrawer)} disableRipple>
+        <MenuIcon className={classes.hamburgerIcon} />
+      </IconButton>
+    </>
+  )
 
   return (
     <ElevationScroll {...props}>
@@ -435,6 +506,7 @@ export default function HeaderVanilaNonHover(props) {
               </div>
             </div>
           </Hidden>
+          <Hidden smUp>{drawer}</Hidden>
         </Toolbar>
       </AppBar>
     </ElevationScroll>
