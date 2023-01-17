@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useTheme } from '@emotion/react'
 import MenuIcon from '@mui/icons-material/Menu'
 import { AppBar, Hidden, IconButton, SwipeableDrawer } from '@mui/material'
@@ -330,6 +331,25 @@ export default function HeaderVanila(props) {
     </>
   )
 
+  const handleMenuItemHoverImageLoad = (e) => {
+    const imageColumnNode = e.target.nextSibling?.children
+
+    const imageColumnNodes =
+      imageColumnNode && Array.prototype.slice.call(imageColumnNode).slice(1)
+
+    console.log({ imageColumnNodes })
+
+    if (!imageColumnNodes) return
+
+    for (const key in imageColumnNodes) {
+      if (Object.prototype.hasOwnProperty.call(imageColumnNodes, key)) {
+        console.log(imageColumnNodes[key].children[0].children[1])
+        const imgElement = imageColumnNodes[key].children[0].children[1]
+        imgElement.setAttribute('src', imgElement.getAttribute('data-src'))
+      }
+    }
+  }
+
   return (
     <>
       <ElevationScroll {...props}>
@@ -365,6 +385,14 @@ export default function HeaderVanila(props) {
                                 <div
                                   className={classes.menuItem}
                                   onClick={() => router.push(option.link)}
+                                  onFocus={(e) => {
+                                    const nextSibling =
+                                      e.target.nextElementSibling.children
+                                    console.log({ nextSibling })
+                                  }}
+                                  onMouseOver={(e) =>
+                                    handleMenuItemHoverImageLoad(e)
+                                  }
                                 >
                                   {option.name}
                                   {option.subMenu && <KeyboardArrowRight />}
@@ -392,8 +420,20 @@ export default function HeaderVanila(props) {
                                           className={classes.subMenuImageColumn}
                                           key={index3}
                                         >
+                                          {/* Two ways <img /> and <Image /> (throws error of src not found initially) In both cases, we lose image optimization capability. Its better if we receive compressed webp images by default */}
+                                          {/* <img
+                                            data-src={subMenuImage.src}
+                                            height={subMenuImage.height}
+                                            width={subMenuImage.width}
+                                            alt={subMenuImage.alt}
+                                            style={{
+                                              cursor: 'pointer',
+                                            }}
+                                            loading="lazy"
+                                          /> */}
                                           <Image
-                                            src={subMenuImage.src}
+                                            data-src={subMenuImage.src}
+                                            // src={subMenuImage.src}
                                             // layout="fill"
                                             height={subMenuImage.height}
                                             width={subMenuImage.width}

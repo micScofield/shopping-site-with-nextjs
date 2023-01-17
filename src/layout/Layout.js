@@ -3,28 +3,18 @@ import BackToTop from 'src/layout/back-to-top/BackToTop'
 import Header from 'src/layout/header/Header'
 import HeaderMenuOnly from './header/HeaderMenuOnly'
 import HeaderVanila from './header/HeaderVanila'
+import HeaderVanilaNonHover from './header/HeaderVanilaNonHover'
 
 function Layout({ children }) {
   // Take states outside incase we need value and selectedIndex in some other component for ex. footer
 
   return (
     <div>
-      {/* <AppBar
-        setValue={setValue}
-        setSelectedIndex={setSelectedIndex}
-        value={value}
-        selectedIndex={selectedIndex}
-      /> */}
+      {/* <AppBar /> */}
 
       {/* <div style={{ marginTop: '4rem' }} /> */}
 
-      {/* <AppBar2
-        setValue={setValue}
-        setSelectedIndex={setSelectedIndex}
-        value={value}
-        selectedIndex={selectedIndex}
-        routes={routes}
-      /> */}
+      {/* <AppBar2 /> */}
 
       {/* <Header
         setValue={setValue}
@@ -34,13 +24,13 @@ function Layout({ children }) {
         routes={routes}
       /> */}
 
-      {/* <AppBar /> */}
-
       <Header />
 
       {/* <HeaderMenuOnly /> */}
 
-      <HeaderVanila />
+      {/* <HeaderVanila /> */}
+
+      <HeaderVanilaNonHover />
 
       {/* ID: back-to-top-anchor is for the ^ icon placed on the bottom of the screen. See BackToTop component  */}
       <div id="back-to-top-anchor" />
