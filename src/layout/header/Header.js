@@ -87,12 +87,13 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
   tab: {
-    opacity: 0.8,
+    // opacity: 0.8,
+    color: 'black',
     '&:hover': {
-      opacity: 1,
+      // opacity: 1,
     },
     '&.Mui-selected': {
-      color: 'black',
+      // color: 'orange', // doesn't work
     },
   },
   drawer: {
@@ -151,8 +152,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   latestMenuButton: {
-    position: 'relative',
-    border: '1px solid orange',
+    // position: 'relative',
+    // border: '1px solid orange',
   },
   latestMenu: {
     background: '#F8F8F8',
@@ -300,7 +301,7 @@ export default function Header(props) {
         break
       }
       default: {
-        setValue(0)
+        setValue(null) // fix the error in console somehow
       }
     }
   }, [path])

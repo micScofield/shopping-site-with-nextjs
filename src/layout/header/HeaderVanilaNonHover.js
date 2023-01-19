@@ -1,4 +1,3 @@
-import { useTheme } from '@emotion/react'
 import MenuIcon from '@mui/icons-material/Menu'
 import {
   AppBar,
@@ -8,23 +7,20 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Drawer,
   Hidden,
   IconButton,
   SwipeableDrawer,
-  TextField,
   Typography,
 } from '@mui/material'
 import Toolbar from '@mui/material/Toolbar'
-import { styled, alpha } from '@mui/material/styles'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 import makeStyles from '@mui/styles/makeStyles'
 import Image from 'next/image'
-import InputBase from '@mui/material/InputBase'
-import Link from 'src/common/Link'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
-import SearchIcon from '@mui/icons-material/Search'
+import React, { useState } from 'react'
 import { ArrowBack, Search } from '@mui/icons-material'
+import clsx from 'clsx'
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
@@ -54,14 +50,12 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   tabWrapper: {
-    // border: '0.1px solid blue',
     boxSizing: 'border-box',
     padding: '0.5rem 1.5rem',
   },
   tab: {
-    // border: '0.1px solid purple',
     cursor: 'pointer',
-    padding: '0rem 0.25rem',
+    padding: '0.5rem 0.25rem',
     '&:hover': {
       color: 'orange',
     },
@@ -146,21 +140,6 @@ const useStyles = makeStyles((theme) => ({
     width: '80%',
     padding: '2rem',
   },
-  // drawerTabContainer: {
-  //   display: 'flex',
-  //   justifyContent: 'flex-start',
-  //   alignItems: 'center',
-  //   flexDirection: 'column',
-  // },
-  // drawerTabWrapper: {
-  //   padding: '1rem 1.5rem',
-  // },
-  // drawerTab: {
-  //   padding: '1rem 0.25rem',
-  //   '&:hover': {
-  //     color: 'orange',
-  //   },
-  // },
 }))
 
 function ElevationScroll(props) {
@@ -181,6 +160,7 @@ export default function HeaderVanilaNonHover(props) {
 
   const [openMenu, setOpenMenu] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null)
+  const [activeTab, setActiveTab] = useState(null)
   const [menuItems, setMenuItems] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [openDrawer, setOpenDrawer] = useState(false)
@@ -313,11 +293,12 @@ export default function HeaderVanilaNonHover(props) {
   ]
 
   const handleTabClick = (e, route) => {
-    console.log(route.menu)
-
     if (anchorEl === e.target) {
+      // we are targetting the same tab which is selected
       setOpenMenu(!openMenu)
-      setMenuItems(route.menu)
+      // setMenuItems(route.menu)
+      setMenuItems(null)
+      setActiveTab(null)
       return
     }
 
@@ -325,10 +306,12 @@ export default function HeaderVanilaNonHover(props) {
       setOpenMenu(true)
       setAnchorEl(e.target)
       setMenuItems(route.menu)
+      setActiveTab(route.name)
     } else {
       setOpenMenu(false)
       setAnchorEl(null)
       setMenuItems(null)
+      setActiveTab(null)
     }
   }
 
@@ -349,23 +332,23 @@ export default function HeaderVanilaNonHover(props) {
         <div>
           <ArrowBack onClick={() => setOpenDrawer(false)} />
         </div>
-        <span onClick={() => setOpenNestedDrawer(true)}>Test</span>
-        <SwipeableDrawer
-          disableBackdropTransition={!iOS}
-          disableDiscovery={iOS}
+        <span onClick={() => setOpenNestedDrawer(true)}>
+          Click to open a nested drawer
+        </span>
+        <Drawer
           open={openNestedDrawer}
           onClose={() => {
             setOpenNestedDrawer(false)
             setOpenDrawer(false)
           }}
-          onOpen={() => setOpenNestedDrawer(true)}
+          // onOpen={() => setOpenNestedDrawer(true)}
           classes={{ paper: classes.drawer }}
         >
           <div>
             <ArrowBack onClick={() => setOpenNestedDrawer(false)} />
           </div>
-          Nested
-        </SwipeableDrawer>
+          Nested Drawer
+        </Drawer>
       </SwipeableDrawer>
       <IconButton onClick={() => setOpenDrawer(!openDrawer)} disableRipple>
         <MenuIcon className={classes.hamburgerIcon} />
@@ -395,6 +378,10 @@ export default function HeaderVanilaNonHover(props) {
                     <span
                       key={i}
                       className={classes.tab}
+                      style={{
+                        borderBottom:
+                          activeTab === route.name && '2px solid orange',
+                      }}
                       onClick={(e) => handleTabClick(e, route)}
                     >
                       {route.name}
@@ -491,13 +478,20 @@ export default function HeaderVanilaNonHover(props) {
                   onClick={() => console.log({ searchTerm })}
                   className={classes.searchIcon}
                 />
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className={classes.searchbar}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    console.log({ searchTerm })
+                  }}
+                >
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className={classes.searchbar}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </form>
               </div>
               <div className={classes.callToAction}>
                 <Button variant="outlined" disableRipple>
