@@ -140,8 +140,8 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     height: '2.5rem',
     width: '2.5rem',
-    display: 'flex',
-    marginRight: 'auto',
+    // display: 'flex',
+    // marginRight: 'auto',
   },
   drawer: {
     width: '80%',
@@ -357,7 +357,11 @@ export default function HeaderVanilaNonHoverSticky(props) {
           Nested Drawer
         </Drawer>
       </SwipeableDrawer>
-      <IconButton onClick={() => setOpenDrawer(!openDrawer)} disableRipple>
+      <IconButton
+        onClick={() => setOpenDrawer(!openDrawer)}
+        disableRipple
+        aria-label="Menu Icon"
+      >
         <MenuIcon className={classes.hamburgerIcon} />
       </IconButton>
     </>

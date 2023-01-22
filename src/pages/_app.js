@@ -66,12 +66,12 @@ function MyApp({
   }, [])
 
   // Remove console calls in production
-  // if (process.env.NODE_ENV !== 'development') {
-  //   console.log = () => {}
-  //   console.debug = () => {}
-  //   console.info = () => {}
-  //   console.warn = () => {}
-  // }
+  if (process.env.NODE_ENV !== 'development') {
+    console.log = () => {}
+    console.debug = () => {}
+    console.info = () => {}
+    console.warn = () => {}
+  }
 
   return (
     <Provider store={store}>

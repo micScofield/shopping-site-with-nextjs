@@ -27,7 +27,8 @@ import Typography from '@mui/material/Typography'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 import makeStyles from '@mui/styles/makeStyles'
 import Image from 'next/image'
-import Link from 'next/link'
+// import Link from 'next/link'
+import Link from 'src/common/Link'
 import { useRouter } from 'next/router'
 import LanguageIcon from '@mui/icons-material/Language'
 // import en from 'public/locales/en'
@@ -326,6 +327,7 @@ export default function Header(props) {
   // Latest Menu Implementation 14Jan
   const [showLatestMenu, setShowLatestMenu] = useState(false)
 
+  // Using Tabs is an issue currently with SSR, Tab Names are not pre-rendering on server causing layout shift
   const tabs = (
     <>
       <Tabs
@@ -339,14 +341,17 @@ export default function Header(props) {
         {routes.map((route, index) => (
           <Tab
             key={`${route}${index}`}
-            label={
-              <Link href={route.link} passHref>
-                <Typography className={classes.tab}>{route.name}</Typography>
-              </Link>
-            }
+            LinkComponent={Link}
+            href={route.link}
+            // label={
+            //   <Link href={route.link} passHref>
+            //     <Typography className={classes.tab}>{route.name}</Typography>
+            //   </Link>
+            // }
             // classes={{
             //   selected: classes.tabSelected,
             // }}
+            label={route.name}
             className={classes.tab}
             aria-owns={route.ariaOwns}
             aria-haspopup={route.ariaPopup}
@@ -436,7 +441,11 @@ export default function Header(props) {
           ))}
         </List>
       </SwipeableDrawer>
-      <IconButton onClick={() => setOpenDrawer(!openDrawer)} disableRipple>
+      <IconButton
+        onClick={() => setOpenDrawer(!openDrawer)}
+        disableRipple
+        aria-label="Menu Icon"
+      >
         <MenuIcon className={classes.logo} />
       </IconButton>
     </>
