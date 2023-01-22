@@ -5,6 +5,9 @@ import path from 'path'
 // import CardContainer from 'src/common/components/card-container/CardContainer'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
+import ImageList from 'src/common/mui/ImageList'
+import Image from 'next/image'
+import { Box } from '@mui/system'
 
 const CardContainer = dynamic(
   () => import('src/common/components/card-container/CardContainer'),
@@ -56,9 +59,23 @@ const Home = ({ categories }) => {
         <link rel="canonical" key="canonical" href="https://www.domain.com" />
       </Head>
 
-      {categoriesArray && categoriesArray.length !== 0 && (
+      {/* Images are currently sized as 16/9 aspect ratio, to override, set the height and width explicity to the container and images will fit in */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          // height: '75vh',
+          // width: '100vw',
+        }}
+      >
+        {categoriesArray && categoriesArray.length !== 0 && (
+          <ImageList cards={categoriesArray} />
+        )}
+      </div>
+
+      {/* {categoriesArray && categoriesArray.length !== 0 && (
         <CardContainer cards={categoriesArray} />
-      )}
+      )} */}
     </>
   )
 }

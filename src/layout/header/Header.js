@@ -52,13 +52,13 @@ function ElevationScroll(props) {
 const useStyles = makeStyles((theme) => ({
   appbar: {
     // zIndex: theme.zIndex.modal + 1,
-    zIndex: 100,
+    // zIndex: 100,
   },
   toolbar: {
     // border: '1px solid gray',
     backgroundColor: 'white',
-    color: theme.palette.primary.main,
-    position: 'relative',
+    // color: theme.palette.primary.main,
+    // position: 'relative',
   },
   toolbarMargin: {
     ...theme.mixins.toolbar,
@@ -458,7 +458,7 @@ export default function Header(props) {
   return (
     <>
       <ElevationScroll>
-        <AppBar position="fixed" className={classes.appbar}>
+        <AppBar position="relative" className={classes.appbar}>
           <Toolbar disableGutters className={classes.toolbar}>
             <div className={classes.logoContainer}>
               <div className={classes.logo} onClick={() => router.push('/')}>
@@ -549,8 +549,8 @@ export default function Header(props) {
           </Toolbar>
         </AppBar>
       </ElevationScroll>
-      {/* Push content down */}
-      <div className={classes.toolbarMargin} />
+      {/* Push content down if position is fixed */}
+      {/* <div className={classes.toolbarMargin} /> */}
     </>
   )
 }

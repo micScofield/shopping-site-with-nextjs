@@ -24,8 +24,6 @@ function Header({ children, sticky = false, className, ...rest }) {
     }
   }, [])
 
-  console.log({ isSticky })
-
   return (
     <Typography
       variant="h3"

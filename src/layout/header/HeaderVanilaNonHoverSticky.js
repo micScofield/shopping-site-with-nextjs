@@ -48,7 +48,9 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'flex-start',
     },
   },
-  logo: {},
+  logo: {
+    cursor: 'pointer',
+  },
   tabContainer: {
     // outline: '0.1px solid green',
     display: 'flex',
@@ -140,8 +142,8 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     height: '2.5rem',
     width: '2.5rem',
-    // display: 'flex',
-    // marginRight: 'auto',
+    display: 'flex',
+    marginRight: 'auto',
   },
   drawer: {
     width: '80%',
@@ -392,8 +394,6 @@ export default function HeaderVanilaNonHoverSticky(props) {
       observer.unobserve(cachedRef)
     }
   }, [])
-
-  console.log({ isSticky })
 
   return (
     <ElevationScroll {...props}>
