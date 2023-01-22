@@ -35,6 +35,8 @@ export default class MyDocument extends Document {
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
           <meta property="og:image:alt" content="company logo" />
+          {/* Ref this link for below tag info - https://nextjs.org/learn/seo/crawling-and-indexing/metatags */}
+          <meta name="robots" content="all" />
         </Head>
         <body>
           <Main />
