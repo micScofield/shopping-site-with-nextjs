@@ -18,12 +18,20 @@ import useScrollTrigger from '@mui/material/useScrollTrigger'
 import makeStyles from '@mui/styles/makeStyles'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { ArrowBack, Search } from '@mui/icons-material'
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
     backgroundColor: 'white',
+    position: 'sticky',
+    top: 0,
+  },
+  sticky: {
+    '&::before': {
+      content: 'I am a ',
+      color: 'salmon',
+    },
   },
   toolbar: {
     display: 'flex',
@@ -153,7 +161,7 @@ function ElevationScroll(props) {
   })
 }
 
-export default function HeaderVanilaNonHover(props) {
+export default function HeaderVanilaNonHoverSticky(props) {
   const classes = useStyles(props)
   const router = useRouter()
 
@@ -359,21 +367,47 @@ export default function HeaderVanilaNonHover(props) {
   const hiddenSmDown = useMediaQuery((theme) => theme.breakpoints.down('sm'))
   const hiddenSmUp = useMediaQuery((theme) => theme.breakpoints.up('sm'))
 
+  // Sticky Header Mount
+  const ref = useRef()
+  const [isSticky, setIsSticky] = useState(false)
+
+  useEffect(() => {
+    const cachedRef = ref.current
+    const observer = new IntersectionObserver(
+      ([e]) => setIsSticky(e.intersectionRatio < 1),
+      {
+        threshold: [1],
+        rootMargin: '-1px 0px 0px 0px', // alternativly, use this and set `top:0` in the CSS
+      }
+    )
+
+    observer.observe(cachedRef)
+
+    // unmount
+    return function () {
+      observer.unobserve(cachedRef)
+    }
+  }, [])
+
+  console.log({ isSticky })
+
   return (
     <ElevationScroll {...props}>
-      <AppBar position="sticky" className={classes.appbar}>
+      <AppBar className={classes.appbar} ref={ref}>
         <Toolbar disableGutters className={classes.toolbar}>
           {!hiddenSmDown && (
             <>
-              <div className={classes.logo} onClick={() => router.push('/')}>
-                <Image
-                  src="/assets/crown.svg"
-                  alt="App logo"
-                  height="40"
-                  width="40"
-                  priority
-                />
-              </div>
+              {isSticky && (
+                <div className={classes.logo} onClick={() => router.push('/')}>
+                  <Image
+                    src="/assets/crown.svg"
+                    alt="App logo"
+                    height="40"
+                    width="40"
+                    priority
+                  />
+                </div>
+              )}
               <div className={classes.tabContainer}>
                 {routes.map((route, i) => (
                   <div key={i}>

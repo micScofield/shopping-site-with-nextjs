@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useGetProductsQuery } from 'src/store/services/product.api'
 
-function Test() {
+function ClientSideDataFetching() {
   const [products, setProducts] = useState()
 
   const { data, isLoading, isError, error, isFetching, refetch } =
@@ -27,4 +27,4 @@ function Test() {
   ) : null
 }
 
-export default Test
+export default ClientSideDataFetching

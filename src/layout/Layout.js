@@ -4,6 +4,8 @@ import Header from 'src/layout/header/Header'
 import HeaderMenuOnly from './header/HeaderMenuOnly'
 import HeaderVanila from './header/HeaderVanila'
 import HeaderVanilaNonHover from './header/HeaderVanilaNonHover'
+import HeaderVanilaNonHoverSticky from './header/HeaderVanilaNonHoverSticky'
+import TestSticky from './test/TestSticky'
 
 function Layout({ children }) {
   // Take states outside incase we need value and selectedIndex in some other component for ex. footer
@@ -30,7 +32,11 @@ function Layout({ children }) {
 
       {/* <HeaderVanila /> */}
 
-      <HeaderVanilaNonHover />
+      {/* <HeaderVanilaNonHover /> */}
+
+      <HeaderVanilaNonHoverSticky />
+
+      {/* <TestSticky /> */}
 
       {/* ID: back-to-top-anchor is for the ^ icon placed on the bottom of the screen. See BackToTop component  */}
       <div id="back-to-top-anchor" />

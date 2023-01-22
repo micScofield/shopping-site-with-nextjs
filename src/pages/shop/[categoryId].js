@@ -4,6 +4,7 @@ import path from 'path'
 import { useRouter } from 'next/router'
 import DarkSpinner from 'src/common/components/spinner/dark/DarkSpinner'
 import { getDocument } from 'src/common/utils/firebase/firebase.utils'
+import { Typography } from '@mui/material'
 
 function Category({ data }) {
   const router = useRouter()
@@ -21,6 +22,7 @@ function Category({ data }) {
           {data.items.map(({ id, name, price, imageUrl }) => (
             <div key={id}>{name}</div>
           ))}
+          <Typography variant="body1">Test</Typography>
         </div>
       )
     : null

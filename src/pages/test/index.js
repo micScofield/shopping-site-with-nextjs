@@ -1,5 +1,5 @@
-import { Box, Container, Grid } from '@mui/material'
-import Link from 'src/common/Link'
+import styled from '@emotion/styled'
+import { Box, Container, Grid, Paper } from '@mui/material'
 
 function index() {
   console.log(process.env.NEXT_PUBLIC_TEST_KEY)
@@ -14,30 +14,35 @@ function index() {
           .join('\n')}
       </Box>
       <footer>
-        <Grid container justify="center">
-          <Grid item>
-            <Grid
-              container
-              direction="column"
-              spacing={2}
-              style={{ margin: 0 }}
-            >
+        <Box>
+          <Grid container direction="column" spacing={3}>
+            {[...new Array(3)].map(() => (
               <Grid
+                container
                 item
-                component={Link}
-                onClick={() => console.log('Clicked')}
-                href="/test/i18n"
-                // className={classes.link}
+                rowSpacing={1}
+                columnSpacing={{ xs: 1, sm: 3, md: 6 }}
               >
-                i18n
+                {[...new Array(4)].map(() => (
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <Item>Item</Item>
+                  </Grid>
+                ))}
               </Grid>
-            </Grid>
+            ))}
           </Grid>
-        </Grid>
-        {/* {process.env.TEST_KEY} */}
+        </Box>
       </footer>
     </Container>
   )
 }
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}))
 
 export default index

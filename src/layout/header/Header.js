@@ -196,9 +196,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Header(props) {
   const [value, setValue] = useState(0)
   const classes = useStyles(props)
-  const theme = useTheme()
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
-  const matches = useMediaQuery(theme.breakpoints.down('md'))
   const router = useRouter()
 
   const [openDrawer, setOpenDrawer] = useState(false)
@@ -444,6 +442,10 @@ export default function Header(props) {
     </>
   )
 
+  // Hidden tab logic
+  const smDown = useMediaQuery((theme) => theme.breakpoints.down('sm'))
+  const smUp = useMediaQuery((theme) => theme.breakpoints.up('sm'))
+
   return (
     <>
       <ElevationScroll>
@@ -461,8 +463,8 @@ export default function Header(props) {
                 />
               </div>
             </div>
-            <Hidden smDown>{tabs}</Hidden>
-            <Hidden smUp>{drawer}</Hidden>
+            {smUp && tabs}
+            {smDown && drawer}
             {/* <CustomizedMenus option={menuOptions2} /> */}
             <Button
               aria-label="Menu Dropdown"
@@ -515,20 +517,18 @@ export default function Header(props) {
                 />
               </>
             )}
-            <Hidden smDown>
-              <Button
-                onClick={() => router.push('/cart')}
-                className={classes.cartContainer}
-                aria-label="Shopping Bag"
-              >
-                <Image
-                  className={classes.logo}
-                  src="/assets/shopping-bag.svg"
-                  layout="fill"
-                  alt="Shopping Bag"
-                />
-              </Button>
-            </Hidden>
+            <Button
+              onClick={() => router.push('/cart')}
+              className={classes.cartContainer}
+              aria-label="Shopping Bag"
+            >
+              <Image
+                className={classes.logo}
+                src="/assets/shopping-bag.svg"
+                layout="fill"
+                alt="Shopping Bag"
+              />
+            </Button>
             <select
               onChange={changeLanguage}
               defaultValue={locale}
