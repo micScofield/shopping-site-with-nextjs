@@ -45,3 +45,6 @@ __backup
 
 # dump files for development
 __dump
+
+# notes
+__note
