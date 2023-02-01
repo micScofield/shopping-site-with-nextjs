@@ -1,88 +1,96 @@
-// import { Loader } from '@googlemaps/js-api-loader'
-// import DriveEtaIcon from '@mui/icons-material/DriveEta'
-// import TrainIcon from '@mui/icons-material/Train'
-// import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk'
-// import PedalBikeIcon from '@mui/icons-material/PedalBike'
-// import { useEffect, useRef } from 'react'
+import DriveEtaIcon from '@mui/icons-material/DriveEta'
+import TrainIcon from '@mui/icons-material/Train'
+import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk'
+import PedalBikeIcon from '@mui/icons-material/PedalBike'
+import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api'
+import { useCallback, useState } from 'react'
 
-// const lat = 27.798297
-// const lng = -102.467171
+const lat = 37.798293
+const lng = -122.477901
 
-// const Maps = () => {
-//   // Google maps configuration
-//   const googlemap = useRef(null)
+const Maps = () => {
+  const [map, setMap] = useState(null)
 
-//   useEffect(() => {
-//     const loader = new Loader({
-//       apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
-//       version: 'weekly',
-//     })
-//     let map
-//     loader.load().then(() => {
-//       const { google } = window
-//       map = new google.maps.Map(googlemap.current, {
-//         center: { lat, lng },
-//         zoom: 8,
-//         fullscreenControl: false, // remove the top-right button
-//         mapTypeControl: false, // remove the top-left buttons
-//         streetViewControl: false, // remove the pegman
-//         zoomControl: false, // remove the bottom-right buttons
-//       })
+  // Load Script Call
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
+  })
 
-//       const marker = new google.maps.Marker({
-//         position: { lat, lng },
-//         map,
-//         title: 'Marker Title',
-//       })
-//     })
-//   })
+  const onLoad = useCallback(async (map) => {
+    setMap(map)
+  }, [])
 
-//   const handleDirectionClick = (directionFlag) => {
-//     // router.push({
-//     //   pathname: 'https://maps.google.com/',
-//     //   query: {
-//     //     saddr: 'current+location',
-//     //     daddr: '37.80451,-122.45169',
-//     //     difrlg: 'd',
-//     //   },
-//     // })
-//     window.open(
-//       `https://maps.google.com/?saddr=current+location&daddr=24.8853599,74.6490578&dirflg=${directionFlag}`,
-//       '_blank'
-//     )
-//     // https://maps.google.com/?saddr=current+location&daddr=37.80451,-122.45169&dirflg=d
-//   }
+  const onUnmount = useCallback(() => {
+    setMap(null)
+  }, [])
 
-//   return (
-//     <div
-//       style={{
-//         display: 'flex',
-//         flexDirection: 'column',
-//         height: '30rem',
-//         width: '50rem',
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//       }}
-//     >
-//       <div id="map" style={{ height: '100%', width: '100%' }} ref={googlemap} />
-//       <div
-//         style={{
-//           display: 'flex',
-//           width: '100%',
-//           justifyContent: 'space-around',
-//         }}
-//       >
-//         <DriveEtaIcon onClick={() => handleDirectionClick('d')} />
-//         <TrainIcon onClick={() => handleDirectionClick('r')} />
-//         <DirectionsWalkIcon onClick={() => handleDirectionClick('w')} />
-//         <PedalBikeIcon onClick={() => handleDirectionClick('b')} />
-//       </div>
-//     </div>
-//   )
-// }
+  const handleDirectionClick = (directionFlag) => {
+    // router.push({
+    //   pathname: 'https://maps.google.com/',
+    //   query: {
+    //     saddr: 'current+location',
+    //     daddr: '37.80451,-122.45169',
+    //     difrlg: 'd',
+    //   },
+    // })
+    window.open(
+      `https://maps.google.com/?saddr=current+location&daddr=24.8853599,74.6490578&dirflg=${directionFlag}`,
+      '_blank'
+    )
+  }
 
-// export default Maps
-
-export default function Maps() {
-  return <div>Test</div>
+  return !isLoaded ? (
+    <div>Loading...</div>
+  ) : (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <GoogleMap
+        mapContainerStyle={{
+          width: '100vw',
+          height: '50vh',
+          // height: '30rem',
+          // width: '50rem',
+        }}
+        options={{
+          mapTypeControl: false,
+          fullscreenControl: true,
+          fullscreenControlOptions: {
+            position: window.google.maps.ControlPosition.LEFT_TOP,
+          },
+        }}
+        center={{ lat, lng }}
+        zoom={13}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        <Marker
+          position={{ lat, lng }}
+          optimised={false}
+          title="Title"
+          animation={window.google.maps.Animation.DROP}
+        />
+      </GoogleMap>
+      <div
+        style={{
+          display: 'flex',
+          width: '100vw',
+          justifyContent: 'space-around',
+          marginTop: '0.5rem',
+        }}
+      >
+        <DriveEtaIcon onClick={() => handleDirectionClick('d')} />
+        <TrainIcon onClick={() => handleDirectionClick('r')} />
+        <DirectionsWalkIcon onClick={() => handleDirectionClick('w')} />
+        <PedalBikeIcon onClick={() => handleDirectionClick('b')} />
+      </div>
+    </div>
+  )
 }
+
+export default Maps

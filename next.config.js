@@ -103,4 +103,6 @@ Use priority if the image is above the fold
 Firefox 67+ displays a white background while loading. Possible solutions:
 Enable AVIF formats (See point 2)
 Use placeholder="blur" (See example in Card component)
+
+5. next-compose-plugins is a prod dependency as it is used in next config which runs on prod
 */

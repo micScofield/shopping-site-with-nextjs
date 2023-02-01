@@ -31,6 +31,8 @@ export const InternetConnectionStatusProvider = ({ children }) => {
 
   const value = useMemo(() => ({ isOnline }))
 
+  console.log(value)
+
   return (
     <InternetConnectionStatusContext.Provider value={value}>
       {children}

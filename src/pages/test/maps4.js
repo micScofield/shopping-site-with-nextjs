@@ -30,6 +30,8 @@ const center = {
 //   type: 'poly',
 // }
 
+// With uni direction route options
+/*
 const directionOptions = {
   origin: {
     lat: 37.8011021,
@@ -47,7 +49,7 @@ const directionOptions = {
   provideRouteAlternatives: false,
   travelMode: 'DRIVING',
   drivingOptions: {
-    departureTime: new Date(/* now, or future date */),
+    // departureTime: new Date() // now or future date,
     trafficModel: 'pessimistic',
   },
   // unitSystem: google.maps.UnitSystem.IMPERIAL,
@@ -72,6 +74,82 @@ const directionOptions2 = {
     {
       location: {
         lat: 37.8020074,
+        lng: -122.4217419,
+      },
+    },
+  ],
+  provideRouteAlternatives: false,
+  travelMode: 'DRIVING',
+  drivingOptions: {
+    // departureTime: new Date() // now or future date,
+    trafficModel: 'pessimistic',
+  },
+}
+*/
+
+const directionOptions = {
+  origin: {
+    lat: 37.8011021,
+    lng: -122.4507559,
+  },
+  destination: {
+    lat: 37.8011021,
+    lng: -122.4507559,
+  },
+  waypoints: [
+    {
+      location: { lat: 37.79757370000001, lng: -122.4588825 },
+    },
+    {
+      location: { lat: 37.79188, lng: -122.45855 },
+    },
+    {
+      location: { lat: 37.7935724, lng: -122.483638 },
+    },
+    {
+      location: { lat: 37.799498, lng: -122.45241 },
+    },
+  ],
+  provideRouteAlternatives: false,
+  travelMode: 'DRIVING',
+  drivingOptions: {
+    departureTime: new Date(/* now, or future date */),
+    trafficModel: 'pessimistic',
+  },
+  // unitSystem: google.maps.UnitSystem.IMPERIAL,
+}
+
+const directionOptions2 = {
+  origin: {
+    lat: 37.79011,
+    lng: -122.3939,
+  },
+  destination: {
+    lat: 37.79011,
+    lng: -122.3939,
+  },
+  waypoints: [
+    {
+      location: {
+        lat: 37.793826,
+        lng: -122.3978067,
+      },
+    },
+    {
+      location: {
+        lat: 37.8020074,
+        lng: -122.4217419,
+      },
+    },
+    {
+      location: {
+        lat: 37.8011021,
+        lng: -122.4507559,
+      },
+    },
+    {
+      location: {
+        lat: 37.799223,
         lng: -122.4217419,
       },
     },

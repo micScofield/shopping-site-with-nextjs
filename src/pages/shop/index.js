@@ -2,6 +2,7 @@ import React from 'react'
 import { getCategoriesAndDocuments } from 'src/common/utils/firebase/firebase.utils'
 
 function Shop({ shopData }) {
+  console.log('Shop page rendering')
   const entries = Object.entries(shopData)
 
   if (!entries) {
