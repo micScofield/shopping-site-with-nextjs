@@ -42,3 +42,6 @@ __backup
 .env.development
 .env.production
 .env.test
+
+# dump files for development
+__dump

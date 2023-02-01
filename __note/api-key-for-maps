@@ -1,0 +1,2 @@
+NEXT_PUBLIC_GOOGLE_API_KEY = 'AIzaSyBNLrJhOMz6idD05pzfn5lhA-TAw-mAZCU' // old. Use this
+NEXT_PUBLIC_GOOGLE_API_KEY = 'AIzaSyBr3zXqWmSbKgjt_eykPf8jJ_qMpgqcUQo' // New, requires billing

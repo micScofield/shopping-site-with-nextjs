@@ -33,7 +33,7 @@ function TestInternationalization() {
           </article>
           <h2>{t2('frSpecific')}</h2>
           <section>
-            <Trans i18nKey="hello">hello {{ name }}</Trans>
+            <Trans i18nKey="hello">hello {name}</Trans>
             <br />
             <Trans i18nKey="hello">Hello</Trans>
           </section>

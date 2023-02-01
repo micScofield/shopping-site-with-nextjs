@@ -28,8 +28,10 @@ const theme = createTheme({
     },
   },
   typography: {
-    // fontFamily: `"Roboto", sans-serif`,
-    fontFamily: `"Sofia Sans Extra Condensed", sans-serif`,
+    fontFamily: `"Roboto", sans-serif`,
+    // fontFamily: `"Sofia Sans Extra Condensed", sans-serif`,
+
+    // Custom css class example below -
     estimate: {
       fontSize: '1rem',
       textTransform: 'none',

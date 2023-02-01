@@ -26,13 +26,13 @@ function Layout({ children }) {
         routes={routes}
       /> */}
 
-      <Header />
+      {/* <Header /> */}
 
       {/* <HeaderMenuOnly /> */}
 
       {/* <HeaderVanila /> */}
 
-      {/* <HeaderVanilaNonHover /> */}
+      <HeaderVanilaNonHover />
 
       <HeaderVanilaNonHoverSticky />
 

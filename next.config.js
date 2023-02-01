@@ -75,3 +75,22 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
+
+// Notes
+/*
+1. If you need to serve SVG images with the default Image Optimization API - 
+images: {
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
+
+2. Enable AVIF support - 
+images: {
+    formats: ['image/avif', 'image/webp'],
+  },
+
+3. Specify device sizes - 
+images: {
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+  },
+*/
