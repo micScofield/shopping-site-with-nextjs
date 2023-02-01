@@ -72,6 +72,7 @@ const nextConfig = {
     // removeConsole: true,
   },
   i18n,
+  productionBrowserSourceMaps: true, // removing this entry won't allow source maps to be downloaded in prod
 }
 
 module.exports = nextConfig
@@ -93,4 +94,13 @@ images: {
 images: {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   },
+
+4. Known Browser Bugs
+Safari 15+ displays a gray border while loading. Possible solutions:
+Use CSS @supports (font: -apple-system-body) and (-webkit-appearance: none) { img[loading="lazy"] { clip-path: inset(0.6px) } }
+Use priority if the image is above the fold
+
+Firefox 67+ displays a white background while loading. Possible solutions:
+Enable AVIF formats (See point 2)
+Use placeholder="blur" (See example in Card component)
 */
