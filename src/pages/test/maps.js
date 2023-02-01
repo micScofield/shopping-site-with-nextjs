@@ -178,3 +178,7 @@
 // }
 
 // export default Maps
+
+export default function Maps() {
+  return <div>Test</div>
+}
