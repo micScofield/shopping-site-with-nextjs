@@ -9,16 +9,17 @@ import ImageList from 'src/common/mui/ImageList'
 import Image from 'next/image'
 import { Box } from '@mui/system'
 
-const CardContainer = dynamic(
-  () => import('src/common/components/card-container/CardContainer'),
-  { loading: () => <div>Loading...</div> }
-)
+// const CardContainer = dynamic(
+//   () => import('src/common/components/card-container/CardContainer'),
+//   { loading: () => <div>Loading...</div> }
+// )
 
 const Home = ({ categories }) => {
   const router = useRouter()
 
   if (!categories) {
     // We are anyways redirecting the user to /no-data (see static method below). We won't reach this block unless we have dynamic routes with fallbacks
+    return <div>No Data Redirection Here</div>
   }
 
   const onOverlayClickHandler = (e, payload) => {

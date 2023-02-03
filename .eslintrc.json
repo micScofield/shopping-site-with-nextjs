@@ -1,6 +1,7 @@
 {
   "extends": [
     "airbnb",
+    "plugin:storybook/recommended",
     "plugin:react/jsx-runtime",
     "prettier",
     "plugin:@next/next/recommended"

@@ -1,8 +1,10 @@
 import axios from 'axios'
 import React from 'react'
 
-function Shop({ data }) {
-  return <div>{JSON.stringify(data)}</div>
+function Shop(props) {
+  const { data } = props
+  console.log({ props })
+  return data ? <div>{JSON.stringify(data)}</div> : <div>No Data</div>
 }
 
 export default Shop
