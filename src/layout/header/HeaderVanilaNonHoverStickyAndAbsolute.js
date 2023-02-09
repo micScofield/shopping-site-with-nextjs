@@ -40,13 +40,15 @@ const useStyles = makeStyles((theme) => ({
     width: '80%', // it is later changed to 100% when it is in sticky position
     margin: '0 auto',
     backgroundColor: 'white',
+    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
     color: theme.palette.primary.main,
     zIndex: 100,
-    position: 'relative',
     padding: '0 1rem',
     [theme.breakpoints.down('sm')]: {
       justifyContent: 'flex-start',
     },
+    position: 'absolute',
+    top: '0',
   },
   logo: {
     cursor: 'pointer',
@@ -163,7 +165,7 @@ function ElevationScroll(props) {
   })
 }
 
-export default function HeaderVanilaNonHoverSticky(props) {
+export default function HeaderVanilaNonHoverStickyAndAbsolute(props) {
   const classes = useStyles(props)
   const router = useRouter()
 
@@ -302,12 +304,14 @@ export default function HeaderVanilaNonHoverSticky(props) {
   ]
 
   const handleTabClick = (e, route) => {
+    console.log(e.target)
     if (anchorEl === e.target) {
       // we are targetting the same tab which is selected
       setOpenMenu(!openMenu)
       // setMenuItems(route.menu)
       setMenuItems(null)
       setActiveTab(null)
+      setAnchorEl(null)
       return
     }
 
@@ -398,59 +402,80 @@ export default function HeaderVanilaNonHoverSticky(props) {
   return (
     <ElevationScroll {...props}>
       <AppBar className={classes.appbar} ref={ref}>
-        <Toolbar
-          disableGutters
-          className={classes.toolbar}
+        <div
           style={{
-            width: isSticky ? '100%' : '80%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'relative',
           }}
         >
-          {!hiddenSmDown && (
-            <>
-              {isSticky && (
-                <div className={classes.logo} onClick={() => router.push('/')}>
-                  <Image
-                    src="/assets/crown.svg"
-                    alt="App logo"
-                    height="40"
-                    width="40"
-                    priority
-                  />
-                </div>
-              )}
-              <div className={classes.tabContainer}>
-                {routes.map((route, i) => (
-                  <div key={i}>
-                    <div className={classes.tabWrapper}>
-                      <span
-                        key={i}
-                        className={classes.tab}
-                        style={{
-                          borderBottom:
-                            activeTab === route.name && '2px solid orange',
-                        }}
-                        onClick={(e) => handleTabClick(e, route)}
-                      >
-                        {route.name}
-                      </span>
-                    </div>
-                    {openMenu && menuItems && (
-                      <div className={classes.menu}>
-                        {new Array(3).fill().map((el, index) => (
-                          <div className={classes.menuColumn} key={index}>
-                            <div className={classes.menuColumnHeader}>
-                              Header
+          <Toolbar
+            disableGutters
+            className={classes.toolbar}
+            style={{
+              width: isSticky ? '100%' : '80%',
+            }}
+          >
+            {!hiddenSmDown && (
+              <>
+                {isSticky && (
+                  <div
+                    className={classes.logo}
+                    onClick={() => router.push('/')}
+                  >
+                    <Image
+                      src="/assets/crown.svg"
+                      alt="App logo"
+                      height="40"
+                      width="40"
+                      priority
+                    />
+                  </div>
+                )}
+                <div className={classes.tabContainer}>
+                  {routes.map((route, i) => (
+                    <div key={i}>
+                      <div className={classes.tabWrapper}>
+                        <span
+                          key={i}
+                          className={classes.tab}
+                          style={{
+                            borderBottom:
+                              activeTab === route.name && '2px solid orange',
+                          }}
+                          onClick={(e) => handleTabClick(e, route)}
+                        >
+                          {route.name}
+                        </span>
+                      </div>
+                      {openMenu && menuItems && (
+                        <div className={classes.menu}>
+                          {new Array(3).fill().map((el, index) => (
+                            <div className={classes.menuColumn} key={index}>
+                              <div className={classes.menuColumnHeader}>
+                                Header
+                              </div>
+                              <div className={classes.menuColumnContent}>
+                                <div className={classes.menuItem}>
+                                  Menu Item
+                                </div>
+                                <div className={classes.menuItem}>
+                                  Menu Item
+                                </div>
+                                <div className={classes.menuItem}>
+                                  Menu Item
+                                </div>
+                                <div className={classes.menuItem}>
+                                  Menu Item
+                                </div>
+                                <div className={classes.menuItem}>
+                                  Menu Item
+                                </div>
+                              </div>
                             </div>
-                            <div className={classes.menuColumnContent}>
-                              <div className={classes.menuItem}>Menu Item</div>
-                              <div className={classes.menuItem}>Menu Item</div>
-                              <div className={classes.menuItem}>Menu Item</div>
-                              <div className={classes.menuItem}>Menu Item</div>
-                              <div className={classes.menuItem}>Menu Item</div>
-                            </div>
-                          </div>
-                        ))}
-                        {/* <div className={classes.menuImageColumn}>
+                          ))}
+                          {/* <div className={classes.menuImageColumn}>
                         <Image
                           src="https://i.ibb.co/cvpntL1/hats.png"
                           height={203}
@@ -464,95 +489,100 @@ export default function HeaderVanilaNonHoverSticky(props) {
                           }}
                         />
                       </div> */}
-                        <div className={classes.menuCardColumn}>
-                          {' '}
-                          <Card sx={{ maxWidth: 250 }}>
-                            <CardActionArea>
-                              <CardMedia
-                                component="img"
-                                height="140"
-                                image="https://i.ibb.co/cvpntL1/hats.png"
-                                alt="Shop Hats"
-                              />
-                              <CardContent>
-                                <Typography
-                                  gutterBottom
-                                  variant="h6"
-                                  component="div"
-                                >
-                                  Hats
-                                </Typography>
-                                <Typography
-                                  variant="body2"
-                                  color="text.secondary"
-                                  sx={{ maxHeight: 80, overflow: 'scroll' }}
-                                >
-                                  Lorem ipsum dolor sit, amet consectetur
-                                  adipisicing elit. Eligendi quis in omnis magni
-                                  quisquam beatae enim impedit ipsam facilis
-                                  reiciendis voluptas, perspiciatis distinctio
-                                  molestias ex numquam incidunt provident ipsum
-                                  dolorem adipisci ab nam voluptatem rem.
-                                  Consectetur id natus fugiat maiores mollitia
-                                  pariatur explicabo provident soluta, numquam
-                                  at laborum facilis animi consequuntur aperiam
-                                  quaerat dicta nisi voluptas accusantium illum
-                                  atque. Ducimus nesciunt ipsum, nisi magnam et
-                                  distinctio quisquam qui placeat voluptas optio
-                                  nam quam iusto laborum dicta, exercitationem
-                                  quia praesentium accusantium culpa possimus.
-                                  Eos accusantium sapiente repellat est earum
-                                  commodi laboriosam voluptate! Dignissimos,
-                                  minus? Dicta aliquam cumque doloremque sit,
-                                  ipsam atque.
-                                </Typography>
-                              </CardContent>
-                            </CardActionArea>
-                            <CardActions>
-                              <Button size="small" color="primary">
-                                Explore
-                              </Button>
-                            </CardActions>
-                          </Card>
-                        </div>
+                          <div className={classes.menuCardColumn}>
+                            <Card sx={{ maxWidth: 250 }}>
+                              <CardActionArea>
+                                <CardMedia
+                                  component="img"
+                                  height="140"
+                                  image="https://i.ibb.co/cvpntL1/hats.png"
+                                  alt="Shop Hats"
+                                />
+                                <CardContent>
+                                  <Typography
+                                    gutterBottom
+                                    variant="h6"
+                                    component="div"
+                                  >
+                                    Hats
+                                  </Typography>
+                                  <Typography
+                                    variant="body2"
+                                    color="text.secondary"
+                                    sx={{ maxHeight: 80, overflow: 'scroll' }}
+                                  >
+                                    Lorem ipsum dolor sit, amet consectetur
+                                    adipisicing elit. Eligendi quis in omnis
+                                    magni quisquam beatae enim impedit ipsam
+                                    facilis reiciendis voluptas, perspiciatis
+                                    distinctio molestias ex numquam incidunt
+                                    provident ipsum dolorem adipisci ab nam
+                                    voluptatem rem. Consectetur id natus fugiat
+                                    maiores mollitia pariatur explicabo
+                                    provident soluta, numquam at laborum facilis
+                                    animi consequuntur aperiam quaerat dicta
+                                    nisi voluptas accusantium illum atque.
+                                    Ducimus nesciunt ipsum, nisi magnam et
+                                    distinctio quisquam qui placeat voluptas
+                                    optio nam quam iusto laborum dicta,
+                                    exercitationem quia praesentium accusantium
+                                    culpa possimus. Eos accusantium sapiente
+                                    repellat est earum commodi laboriosam
+                                    voluptate! Dignissimos, minus? Dicta aliquam
+                                    cumque doloremque sit, ipsam atque.
+                                  </Typography>
+                                </CardContent>
+                              </CardActionArea>
+                              <CardActions>
+                                <Button size="small" color="primary">
+                                  Explore
+                                </Button>
+                              </CardActions>
+                            </Card>
+                          </div>
 
-                        {/* {JSON.stringify(menuItems)} */}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-              <div className={classes.actions}>
-                <div className={classes.searchContainer}>
-                  <Search
-                    onClick={() => console.log({ searchTerm })}
-                    className={classes.searchIcon}
-                  />
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault()
-                      console.log({ searchTerm })
-                    }}
-                  >
-                    <input
-                      type="text"
-                      placeholder="Search"
-                      className={classes.searchbar}
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
+                          {/* {JSON.stringify(menuItems)} */}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <div className={classes.actions}>
+                  <div className={classes.searchContainer}>
+                    <Search
+                      onClick={() => console.log({ searchTerm })}
+                      className={classes.searchIcon}
                     />
-                  </form>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault()
+                        console.log({ searchTerm })
+                      }}
+                    >
+                      <input
+                        type="text"
+                        placeholder="Search"
+                        className={classes.searchbar}
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                      />
+                    </form>
+                  </div>
+                  <div className={classes.callToAction}>
+                    <Button
+                      variant="outlined"
+                      disableRipple
+                      aria-label="Explore"
+                    >
+                      Explore
+                    </Button>
+                  </div>
                 </div>
-                <div className={classes.callToAction}>
-                  <Button variant="outlined" disableRipple aria-label="Explore">
-                    Explore
-                  </Button>
-                </div>
-              </div>
-            </>
-          )}
-          {!hiddenSmUp && drawer}
-        </Toolbar>
+              </>
+            )}
+            {!hiddenSmUp && drawer}
+          </Toolbar>
+        </div>
       </AppBar>
     </ElevationScroll>
   )

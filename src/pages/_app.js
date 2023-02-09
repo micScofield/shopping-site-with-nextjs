@@ -1,7 +1,7 @@
 import { CacheProvider } from '@emotion/react'
 import { ThemeProvider } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
-import { appWithTranslation } from 'next-i18next'
+// import { appWithTranslation } from 'next-i18next'
 import Head from 'next/head'
 import { useEffect } from 'react'
 import { Provider } from 'react-redux'
@@ -105,7 +105,8 @@ function MyApp({
   )
 }
 
-export default appWithTranslation(MyApp)
+// export default appWithTranslation(MyApp)
+export default MyApp
 
 /*
 Make sure Head component is present on all pages if you want to customise title and description. Else, this will be the generic one for all the pages

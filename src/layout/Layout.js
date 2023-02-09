@@ -6,6 +6,7 @@ import HeaderVanila from './header/HeaderVanila'
 import HeaderVanilaNonHover from './header/HeaderVanilaNonHover'
 import HeaderVanilaNonHoverSticky from './header/HeaderVanilaNonHoverSticky'
 import TestSticky from './test/TestSticky'
+import HeaderVanilaNonHoverStickyAndAbsolute from './header/HeaderVanilaNonHoverStickyAndAbsolute'
 
 function Layout({ children }) {
   // Take states outside incase we need value and selectedIndex in some other component for ex. footer
@@ -35,7 +36,8 @@ function Layout({ children }) {
 
       {/* <HeaderVanilaNonHover /> */}
 
-      <HeaderVanilaNonHoverSticky />
+      {/* <HeaderVanilaNonHoverSticky /> */}
+      <HeaderVanilaNonHoverStickyAndAbsolute />
 
       {/* <TestSticky /> */}
 

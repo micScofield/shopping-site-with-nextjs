@@ -1,3 +1,9 @@
+export default function Test() {
+  return <div>Code is commented to test other i18n implementation</div>
+}
+
+// Commenting this out as we are not using third party packages for this.
+/*
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
@@ -55,3 +61,4 @@ export async function getStaticProps({ locale }) {
     },
   }
 }
+*/
