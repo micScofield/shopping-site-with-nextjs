@@ -26,13 +26,14 @@ function Layout({ children }) {
         routes={routes}
       /> */}
 
-      {/* <Header /> */}
+      {/* Has language picker */}
+      <Header />
 
       {/* <HeaderMenuOnly /> */}
 
       {/* <HeaderVanila /> */}
 
-      <HeaderVanilaNonHover />
+      {/* <HeaderVanilaNonHover /> */}
 
       <HeaderVanilaNonHoverSticky />
 

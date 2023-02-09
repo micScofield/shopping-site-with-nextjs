@@ -207,7 +207,7 @@ export default function Header(props) {
   // const [previousURL, setPreviousURL] = useState('')
 
   const { locale } = router
-  //   const t = locale === 'en' ? en : fr
+  //   const t = locale === 'en-US' ? en-US : fr
 
   const changeLanguage = (e) => {
     router.push(router.pathname, router.asPath, { locale: e.target.value })
@@ -543,7 +543,7 @@ export default function Header(props) {
               defaultValue={locale}
               className={classes.localePicker}
             >
-              <option value="en">EN</option>
+              <option value="en-US">EN</option>
               <option value="fr">FR</option>
             </select>
           </Toolbar>
