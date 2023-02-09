@@ -1,17 +1,18 @@
 const path = require('path')
 
 module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx)'],
+  stories: ['../**/*.stories.mdx', '../**/*.stories.@(js|jsx)'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
+    'storybook-addon-material-ui',
   ],
   framework: '@storybook/react',
   core: {
     builder: '@storybook/builder-webpack5',
   },
-  // specify public directory relative path
+  // specify public directory relative path if they are being accessed in stories
   staticDirs: ['../public'],
   // Fixing ModuleNotFound Error
   webpackFinal: async (config) => {

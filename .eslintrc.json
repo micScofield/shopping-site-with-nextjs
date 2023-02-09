@@ -21,6 +21,14 @@
   "env": {
     "browser": true
   },
+  "overrides": [
+    {
+      "files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
+      "rules": {
+        "storybook/hierarchy-separator": "error"
+      }
+    }
+  ],
   // "ecmaFeatures": {
   //   "modules": true,
   //   "spread": true,

@@ -1,5 +1,7 @@
 import { CssBaseline, ThemeProvider } from '@mui/material'
-import theme from '../src/styles/theme'
+import { RouterContext } from 'next/dist/shared/lib/router-context'
+import theme from 'src/styles/theme'
+import { muiTheme } from 'storybook-addon-material-ui5'
 import * as NextImage from 'next/image'
 // import { setupWorker, rest } from 'msw'
 // import { initialize, mswDecorator } from 'msw-storybook-addon'
@@ -31,7 +33,31 @@ const withMuiTheme = (Story) => (
 
 // Provide theme, MSW addon decorator (if mocking is required) globally
 // export const decorators = [withMuiTheme, mswDecorator]
-export const decorators = [withMuiTheme]
+export const decorators = [muiTheme([withMuiTheme])]
+
+// Custom Breakpoints
+const BREAKPOINTS_INT = {
+  xs: 320,
+  sm: 768,
+  md: 1024,
+  lg: 1440,
+  xl: 1536,
+}
+
+const customViewports = Object.fromEntries(
+  Object.entries(BREAKPOINTS_INT).map(([key, val], idx) => {
+    return [
+      key,
+      {
+        name: key,
+        styles: {
+          width: `${val}px`,
+          height: `${(idx + 5) * 10}vh`,
+        },
+      },
+    ]
+  })
+)
 
 // Default params
 export const parameters = {
@@ -42,6 +68,11 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
+  },
+  viewport: { viewports: customViewports },
+  layout: 'fullscreen',
+  nextRouter: {
+    Provider: RouterContext.Provider,
   },
 }
 

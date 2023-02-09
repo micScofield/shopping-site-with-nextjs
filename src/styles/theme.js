@@ -31,7 +31,7 @@ const theme = createTheme({
     fontFamily: `"Roboto", sans-serif`,
     // fontFamily: `"Sofia Sans Extra Condensed", sans-serif`,
 
-    // Custom css class example below -
+    // Custom css classname example below -
     estimate: {
       fontSize: '1rem',
       textTransform: 'none',
