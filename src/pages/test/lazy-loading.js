@@ -34,6 +34,7 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
           )
           .join('\n')}
       </Box>
+      <h1>Testing H1 tag</h1>
 
       {/* <LazyLoadComponent threshold={600}> */}
       {/* </LazyLoadComponent> */}

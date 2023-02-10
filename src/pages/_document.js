@@ -2,7 +2,7 @@ import { ServerStyleSheets } from '@mui/styles'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 import React from 'react'
 import theme from 'src/styles/theme'
-import i18nextConfig from 'next-i18next.config'
+import i18nextConfig from 'i18n.config'
 import createEmotionCache from 'src/styles/createEmotionCache'
 import createEmotionServer from '@emotion/server/create-instance'
 

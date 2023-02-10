@@ -42,7 +42,7 @@ function Layout({ children }) {
       {/* <TestSticky /> */}
 
       {/* Pushing app down by a few rems */}
-      <div style={{ marginBottom: '2rem' }} />
+      <div style={{ marginBottom: '5rem' }} />
 
       {/* ID: back-to-top-anchor is for the ^ icon placed on the bottom of the screen. See BackToTop component  */}
       <div id="back-to-top-anchor" />

@@ -28,14 +28,16 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: `"Roboto", sans-serif`,
-    // fontFamily: `"Sofia Sans Extra Condensed", sans-serif`,
-
+    // fontFamily: `"Roboto", sans-serif`,
+    fontFamily: `"Poppins", sans-serif`,
     // Custom css classname example below -
     estimate: {
       fontSize: '1rem',
       textTransform: 'none',
       color: 'white',
+    },
+    h1: {
+      fontFamily: `"Roboto", sans-serif`,
     },
   },
   palette: {
