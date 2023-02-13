@@ -73,6 +73,7 @@ const nextConfig = {
   },
   i18n,
   productionBrowserSourceMaps: true, // removing this entry won't allow source maps to be downloaded in prod
+  output: 'standalone', // https://nextjs.org/docs/advanced-features/output-file-tracing
 }
 
 module.exports = nextConfig
