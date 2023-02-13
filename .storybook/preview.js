@@ -37,11 +37,11 @@ export const decorators = [muiTheme([withMuiTheme])]
 
 // Custom Breakpoints
 const BREAKPOINTS_INT = {
-  xs: 320,
-  sm: 768,
-  md: 1024,
-  lg: 1440,
-  xl: 1536,
+  xs: 0,
+  sm: 375,
+  md: 720,
+  lg: 1024,
+  xl: 1440,
 }
 
 const customViewports = Object.fromEntries(

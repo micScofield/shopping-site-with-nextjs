@@ -2,7 +2,7 @@ import { Grid, Typography } from '@mui/material'
 import Image from 'next/image'
 import React from 'react'
 import makeStyles from '@mui/styles/makeStyles'
-import theme from 'src/styles/theme'
+import theme, { SECONDARY_COLOR } from 'src/styles/theme'
 
 const useStyles = makeStyles(() => ({
   imageContainer: {
@@ -11,11 +11,16 @@ const useStyles = makeStyles(() => ({
     height: '20rem',
   },
   image: {},
+  dummyText: {
+    // color: theme.palette.presidio.color.BAKER_BEACH_GRAY,
+    color: SECONDARY_COLOR.MAIN[60],
+  },
 }))
 
 function GridSection() {
   const classes = useStyles()
-  console.log(theme)
+  console.log(theme.palette)
+  console.log(theme.presidio)
 
   return (
     <div
@@ -81,7 +86,11 @@ function GridSection() {
           <Grid item sx={{ padding: theme.spacing(3, 6) }}>
             <Typography variant="h3">Header</Typography>
             <Typography variant="h6">Sub Header</Typography>
-            <Typography variant="subtitle1" sx={{ marginTop: '1rem' }}>
+            <Typography
+              variant="subtitle1"
+              sx={{ marginTop: '1rem' }}
+              className={classes.dummyText}
+            >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
               voluptatibus facilis error quam? Delectus amet totam excepturi
               numquam facere rem laudantium a temporibus architecto voluptatem?

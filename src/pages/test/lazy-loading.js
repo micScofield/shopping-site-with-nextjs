@@ -1,5 +1,6 @@
-import { Box, Container } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import Card from 'src/common/components/card/Card'
+import theme from 'src/styles/theme'
 
 function LazyLoadingTest() {
   const test = {
@@ -22,6 +23,8 @@ function LazyLoadingTest() {
     overlayPosition: 'middle',
     showOverlayByDefault: true,
   }
+
+  console.log({ theme })
   return (
     <Container>
       <Box sx={{ my: 2 }}>
@@ -34,7 +37,7 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
           )
           .join('\n')}
       </Box>
-      <h1>Testing H1 tag</h1>
+      <Typography variant="h1">Testing H1 tag</Typography>
 
       {/* <LazyLoadComponent threshold={600}> */}
       {/* </LazyLoadComponent> */}

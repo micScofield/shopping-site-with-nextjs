@@ -23,7 +23,6 @@ import {
   useMediaQuery,
 } from '@mui/material'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 import makeStyles from '@mui/styles/makeStyles'
 import Image from 'next/image'
@@ -34,7 +33,7 @@ import LanguageIcon from '@mui/icons-material/Language'
 // import en from 'public/locales/en'
 // import fr from 'public/locales/fr'
 import React, { useEffect, useState } from 'react'
-import CustomizedMenus from 'src/mui/AppBar/Menu'
+// import CustomizedMenus from 'src/mui/AppBar/Menu'
 
 function ElevationScroll(props) {
   const { children } = props
@@ -333,7 +332,8 @@ export default function Header(props) {
       <Tabs
         className={classes.tabContainer}
         // indicatorColor="primary"
-        value={value}
+        // value={value}
+        value="1"
         classes={{
           indicator: classes.tabIndicator,
         }}
