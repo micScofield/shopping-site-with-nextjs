@@ -4,8 +4,8 @@
   "private": true,
   "engines": {
     "node": ">=16.14.0",
-    "yarn": "please-use-npm",
-    "npm": ">=8.3.0"
+    "yarn": ">=1.22.0",
+    "npm": "please-use-yarn"
   },
   "scripts": {
     "dev": "next dev",
