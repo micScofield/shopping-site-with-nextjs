@@ -195,7 +195,7 @@ const Maps = () => {
 
   // Load Script Call
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY3,
   })
 
   const onLoad = useCallback(async (map) => {
@@ -232,7 +232,7 @@ const Maps = () => {
         justifyContent: 'center',
       }}
     >
-      <GoogleMap
+      {/* <GoogleMap
         mapContainerStyle={{
           width: '100vw',
           height: '50vh',
@@ -251,7 +251,12 @@ const Maps = () => {
           title="Title"
           animation={window.google.maps.Animation.DROP}
         />
-      </GoogleMap>
+      </GoogleMap> */}
+      <iframe
+        title="test"
+        // src="https://www.google.com/maps/embed/v1/view?key=AIzaSyAmZ8fkyqQWI-W3WoumlcOgEJDJlal9lAQ&center=37.798297,-122.467171&zoom=13"
+        src="https://maps.google.com/maps?q=37.798297,-122.467171&z=14&output=embed"
+      />
       <div
         style={{
           display: 'flex',

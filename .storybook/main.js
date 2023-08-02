@@ -6,7 +6,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
-    'storybook-addon-material-ui',
+    'storybook-addon-material-ui5',
   ],
   framework: '@storybook/react',
   core: {
@@ -23,6 +23,7 @@ module.exports = {
         fs: false,
         stream: false,
         os: false,
+        util: require.resolve('util/'),
       },
       modules: [
         ...(config.resolve.modules || []),

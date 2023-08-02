@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     width: '80%', // it is later changed to 100% when it is in sticky position
     margin: '0 auto',

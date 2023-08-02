@@ -28,7 +28,7 @@ function Layout({ children }) {
       /> */}
 
       {/* Has language picker */}
-      <Header />
+      {/* <Header /> */}
 
       {/* <HeaderMenuOnly /> */}
 

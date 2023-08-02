@@ -5,9 +5,10 @@ import path from 'path'
 // import CardContainer from 'src/common/components/card-container/CardContainer'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import ImageList from 'src/common/mui/ImageList'
 import Image from 'next/image'
 import { Box } from '@mui/system'
+// eslint-disable-next-line import/no-unresolved
+import CustomImageList from 'src/common/mui/ImageList'
 
 // const CardContainer = dynamic(
 //   () => import('src/common/components/card-container/CardContainer'),
@@ -70,7 +71,7 @@ const Home = ({ categories }) => {
         }}
       >
         {categoriesArray && categoriesArray.length !== 0 && (
-          <ImageList cards={categoriesArray} />
+          <CustomImageList cards={categoriesArray} />
         )}
       </div>
 
