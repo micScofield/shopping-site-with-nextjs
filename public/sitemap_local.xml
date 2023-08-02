@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://domain.com/</loc>
+    <lastmod>2023-02-14</lastmod>
+  </url>,<url>
     <loc>https://domain.com</loc>
-    <lastmod>2023-02-10</lastmod>
+    <lastmod>2023-03-09</lastmod>
   </url>,<url>
     <loc>https://domain.com/no-data</loc>
     <lastmod>2022-12-19</lastmod>
@@ -22,26 +25,47 @@
     <loc>https://domain.com/test/client-side-data-fetching</loc>
     <lastmod>2023-02-10</lastmod>
   </url>,<url>
+    <loc>https://domain.com/test/drawer</loc>
+    <lastmod>2023-04-07</lastmod>
+  </url>,<url>
     <loc>https://domain.com/test/fake-api</loc>
     <lastmod>2023-02-03</lastmod>
   </url>,<url>
     <loc>https://domain.com/test/grid-section</loc>
-    <lastmod>2023-01-23</lastmod>
+    <lastmod>2023-02-11</lastmod>
   </url>,<url>
     <loc>https://domain.com/test/i18n</loc>
     <lastmod>2023-02-10</lastmod>
   </url>,<url>
-    <loc>https://domain.com/test/image-clip</loc>
-    <lastmod>2023-02-09</lastmod>
+    <loc>https://domain.com/test/image-clip/1</loc>
+    <lastmod>2023-04-18</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/image-clip/2</loc>
+    <lastmod>2023-04-18</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/image-clip/3</loc>
+    <lastmod>2023-04-18</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/image-clip/backup</loc>
+    <lastmod>2023-03-19</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/image-clip/with-video</loc>
+    <lastmod>2023-04-07</lastmod>
   </url>,<url>
     <loc>https://domain.com/test</loc>
     <lastmod>2023-02-03</lastmod>
   </url>,<url>
+    <loc>https://domain.com/test/instagram</loc>
+    <lastmod>2023-07-10</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/intersection-observer</loc>
+    <lastmod>2023-03-26</lastmod>
+  </url>,<url>
     <loc>https://domain.com/test/lazy-loading</loc>
-    <lastmod>2023-02-11</lastmod>
+    <lastmod>2023-02-13</lastmod>
   </url>,<url>
     <loc>https://domain.com/test/maps</loc>
-    <lastmod>2023-02-11</lastmod>
+    <lastmod>2023-04-25</lastmod>
   </url>,<url>
     <loc>https://domain.com/test/maps2</loc>
     <lastmod>2023-02-11</lastmod>
@@ -55,8 +79,29 @@
     <loc>https://domain.com/test/maps5</loc>
     <lastmod>2023-01-31</lastmod>
   </url>,<url>
+    <loc>https://domain.com/test/playground</loc>
+    <lastmod>2023-04-16</lastmod>
+  </url>,<url>
     <loc>https://domain.com/test/redux-at-server</loc>
     <lastmod>2023-02-02</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/region-map</loc>
+    <lastmod>2023-05-23</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/swiper</loc>
+    <lastmod>2023-04-13</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/transitions/CarouselSlide</loc>
+    <lastmod>2023-04-14</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/transitions/quote</loc>
+    <lastmod>2023-04-14</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/video</loc>
+    <lastmod>2023-04-17</lastmod>
+  </url>,<url>
+    <loc>https://domain.com/test/wysiwyg</loc>
+    <lastmod>2023-06-18</lastmod>
   </url>,<url>
     <loc>https://domain.com/test2/[categoryId]</loc>
     <lastmod>2022-12-20</lastmod>
